@@ -35,10 +35,9 @@ public class StatusController : MonoBehaviour
     }
 
     // burn the character for a total amount of damage over a certain time, slowing it for the duration
-    public void Burn(float totalDmg, float time, float slowAmt)
+    public void Burn(float totalDmg, float time)
     {
         StartCoroutine(DoTCoroutine(totalDmg, time));
-        StartCoroutine(SlowCoroutine(slowAmt, time));
     }
 
     // slow the character's speed to a percentual amount of its default speed for given time
