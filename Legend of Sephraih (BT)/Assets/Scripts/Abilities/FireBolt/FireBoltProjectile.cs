@@ -36,7 +36,7 @@ public class FireBoltProjectile : MonoBehaviour
                 if (!damagedTargets.Contains(collider)) //before the bolt is destroyed, it checks for colliders on every frame, which might result in duplicate application, which is unwished for
                 {
                     collider.GetComponent<HealthController>().TakeDamage(dmg); //apply damage to the character the collider belongs to
-                    collider.GetComponent<StatusController>().Burn(dotd, dott); //burn the character
+                    //collider.GetComponent<StatusController>().Burn(dotd, dott); //burn the character
                     //collider.GetComponent<StatusController>().Slow(slow, dott); //slow the character
                     damagedTargets.Add(collider);
 
