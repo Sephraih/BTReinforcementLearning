@@ -4,8 +4,6 @@ using UnityEngine;
 using MLAgents;
 public class PlayerAgent : Agent
 {
-    Rigidbody2D rBody;
-    public float speed = 10;
     float distanceToTarget;
     public Vector2 movementDirection;
     public float msi;
@@ -29,7 +27,6 @@ public class PlayerAgent : Agent
 
     void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
         targetHealth = Target.GetComponent<HealthController>().MaxHealth;
     }
 
@@ -39,13 +36,12 @@ public class PlayerAgent : Agent
         //reset outofboundaries
         if (distanceToTarget > 15.0f)
         {
-            transform.position = new Vector2(30, 25);
-            rBody.velocity = Vector2.zero;
+            transform.position = new Vector2(30,25);
         }
         // Move the target to a new spot
         else
         Target.position = new Vector2(Random.value * 10 +25, Random.value * 10 + 20);
-       
+        //transform.position = new Vector2(30, 25);
 
     }
 
@@ -54,7 +50,7 @@ public class PlayerAgent : Agent
         // Target and Agent positions
 
         AddVectorObs(Target.position);
-        AddVectorObs(this.transform.position);
+        AddVectorObs(transform.position);
         AddVectorObs(attackingDirection.transform.position);
 
         AddVectorObs(distanceToTarget);
@@ -62,10 +58,7 @@ public class PlayerAgent : Agent
 
         AddVectorObs(Target.GetComponent<HealthController>().health);
 
-        // Agent velocity
-        AddVectorObs(rBody.velocity.x);
-        AddVectorObs(rBody.velocity.y);
-    }
+       }
 
     public override void AgentAction(float[] vectorAction)
     {
@@ -89,12 +82,11 @@ public class PlayerAgent : Agent
 
 
         
-        movementDirection = new Vector2(controlSignal.x,controlSignal.y);
+        movementDirection = new Vector2(controlSignal.x *100,controlSignal.y*100);
         movementDirection.Normalize();
         msi = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         GetComponent<MovementController>().Move(movementDirection, msi);
-        //rBody.AddForce(controlSignal * speed);
-
+        
         if (movementDirection != Vector2.zero)
         {
             attackingDirection.transform.localPosition = movementDirection * 0.5f;
@@ -107,7 +99,7 @@ public class PlayerAgent : Agent
         // ran away
         if (distanceToTarget > 15.0f)
         {
-            SetReward(-0.1f);
+            SetReward(-0.5f);
             Done();
         }
 
@@ -118,6 +110,7 @@ public class PlayerAgent : Agent
             targetHealth = Target.GetComponent<HealthController>().health;
         }
 
+        //SetReward(-0.005f);
     }
 
     
@@ -127,6 +120,7 @@ public class PlayerAgent : Agent
         var action = new float[2];
         action[0] = Input.GetAxis("Horizontal");
         action[1] = Input.GetAxis("Vertical");
+        if(Input.GetButtonUp("e")) action[2] = 1;
         return action;
     }
 }
