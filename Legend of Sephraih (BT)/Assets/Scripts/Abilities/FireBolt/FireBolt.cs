@@ -13,6 +13,7 @@ public class FireBolt : MonoBehaviour
 
     private float cd; //remaining cooldown
     public float startcd; //ability cooldown
+    public int dmg = 50;
 
     public float slow = 0.5f; //default movement speed * slow
 
@@ -55,9 +56,9 @@ public class FireBolt : MonoBehaviour
             //instantiate and assign values to a firebolt projectile, which handles damaging, position and collision logic based on the fireboltprojectile script attached to it.
             var bolt = Instantiate(projectile, shotPoint.position, shotPoint.transform.rotation);
             bolt.GetComponent<FireBoltProjectile>().enemy = this.enemy;
-            bolt.GetComponent<FireBoltProjectile>().dmg += this.GetComponent<StatusController>().matk;
-            bolt.GetComponent<FireBoltProjectile>().dotd += this.GetComponent<StatusController>().matk;
-            bolt.GetComponent<FireBoltProjectile>().slow = slow;
+            bolt.GetComponent<FireBoltProjectile>().dmg =dmg; //+= this.GetComponent<StatusController>().matk;
+            //bolt.GetComponent<FireBoltProjectile>().dotd += this.GetComponent<StatusController>().matk;
+            //bolt.GetComponent<FireBoltProjectile>().slow = slow;
 
 
             cd = startcd;

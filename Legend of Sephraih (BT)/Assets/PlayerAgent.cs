@@ -8,6 +8,7 @@ public class PlayerAgent : Agent
     public Vector2 movementDirection;
     public float msi;
     public float targetHealth;
+    public Vector2 startPos;
 
 
     public GameObject attackingDirection; // object used to calculate a vector of attack
@@ -36,13 +37,20 @@ public class PlayerAgent : Agent
         //reset outofboundaries
         if (distanceToTarget > 15.0f)
         {
-            transform.position = new Vector2(30,25);
+            ResetPosition(transform);
         }
         // Move the target to a new spot
         else
-        Target.position = new Vector2(Random.value * 10 +25, Random.value * 10 + 20);
-        //transform.position = new Vector2(30, 25);
+            ResetPosition(Target);
 
+
+        if (GetComponent<HealthController>().health <= 0) { GetComponent<HealthController>().max(); }
+
+    }
+
+    public void ResetPosition(Transform t) {
+        Vector2 rnd = new Vector2(Random.value * 5 - 5, Random.value * 5 - 5);
+        t.position = rnd + startPos;
     }
 
     public override void CollectObservations()
@@ -103,10 +111,17 @@ public class PlayerAgent : Agent
             Done();
         }
 
+        if (GetComponent<HealthController>().health <=0)
+        {
+            SetReward(-1.0f);
+            Done();
+        }
+
         //target took dmg
         if (Target.GetComponent<HealthController>().health == Target.GetComponent<HealthController>().MaxHealth) { targetHealth = Target.GetComponent<HealthController>().MaxHealth; }
         if (targetHealth > Target.GetComponent<HealthController>().health) {
-            SetReward(0.2f);
+            float dmgtaken = targetHealth - Target.GetComponent<HealthController>().health;
+            SetReward(0.01f*dmgtaken);
             targetHealth = Target.GetComponent<HealthController>().health;
         }
 

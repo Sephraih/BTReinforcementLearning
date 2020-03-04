@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MultiSlash : MonoBehaviour
 {
-    
-    public int damage;
+
+    public int basedmg;
     public float startDelay; //cool down
     private float delay; //cool down remaining
     private int maxCombo = 4;
@@ -16,7 +16,7 @@ public class MultiSlash : MonoBehaviour
     public LayerMask whatIsEnemy; //string specified in editor, "enemy" or "player" then matched against tags of objects to be determined enmy or not
 
     private Transform attackPos; //direction of attack
-    
+
     //damage area of slash
     private float attackRangeX = 2.5f;
     private float attackRangeY = 1.5f;
@@ -42,20 +42,25 @@ public class MultiSlash : MonoBehaviour
     {
         if (delay <= 0) //can't attack if the attack isnt ready to be used again
         {
+
+            int dmg = basedmg;
             //use different slash animations based on the combo
-            if (comboCount > 2)DoubleSlash();
-            else if (comboCount == 1)RightSlash();
+            if (comboCount > 2)
+            {
+                DoubleSlash(); dmg *= 2;
+            }
+            else if (comboCount == 1) RightSlash();
             else LeftSlash();
 
             //attack stat of the using character influences damage
-            var atk = transform.GetComponent<StatusController>().atk;
+            //var atk = transform.GetComponent<StatusController>().atk;
 
             //determine damaged enemies, apply damage
             Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX, attackRangeY), attackPos.localPosition.x * 90, whatIsEnemy);
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {
                 if (enemiesToDamage[i].isTrigger)
-                    enemiesToDamage[i].GetComponent<HealthController>().TakeDamage((damage + atk) + comboCount*atk);
+                    enemiesToDamage[i].GetComponent<HealthController>().TakeDamage((dmg));
             }
             comboCount++;
             delay = comboDelay;
@@ -69,7 +74,7 @@ public class MultiSlash : MonoBehaviour
         }
     }
 
-    
+
     private void LeftSlash()
     {
         Slash(-30, Color.cyan);
@@ -82,10 +87,11 @@ public class MultiSlash : MonoBehaviour
 
     private void DoubleSlash()
     {
-        Color sc = new Color(0.2f, 0, 0.7f,1);
+        Color sc = new Color(0.2f, 0, 0.7f, 1);
         Slash(30, sc);
         Slash(-30, sc);
         Camera.main.GetComponent<camerafollow>().CamShake();
+        Camera.main.GetComponent<NeutralCam>().CamShake();
     }
 
     //create a particle system in based on color and rotation angle

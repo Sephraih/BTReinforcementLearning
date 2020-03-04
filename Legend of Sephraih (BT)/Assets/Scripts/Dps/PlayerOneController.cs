@@ -9,7 +9,7 @@ public class PlayerOneController : MonoBehaviour
 
     public Rigidbody2D rb; //physic entity
     public Animator animator; // to display movement animation
-
+    
 
 
     public Vector2 movementDirection; // from input based on x and y axis
@@ -36,12 +36,10 @@ public class PlayerOneController : MonoBehaviour
     // called each frame
     void Update()
     {
-        if (transform == Camera.main.GetComponent<camerafollow>().target)
-        {
-            ProcessInputs();
-            Aim();
-            Attack();
-        }
+        ProcessInputs();
+        Aim();
+        Attack();
+        Reset();
     }
 
     void ProcessInputs()
@@ -104,6 +102,14 @@ public class PlayerOneController : MonoBehaviour
         }
 
 
+    }
+
+    void Reset() {
+        if (GetComponent<HealthController>().health <= 0)
+        {
+            GetComponent<HealthController>().max();
+            GetComponent<PlayerAgent>().ResetPosition(transform);
+        }
     }
 }
 
