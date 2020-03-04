@@ -9,6 +9,7 @@ public class PlayerAgent : Agent
     public float msi;
     public float targetHealth;
     public Vector2 startPos;
+    public int posResetRndScale = 10;
 
 
     public GameObject attackingDirection; // object used to calculate a vector of attack
@@ -49,7 +50,7 @@ public class PlayerAgent : Agent
     }
 
     public void ResetPosition(Transform t) {
-        Vector2 rnd = new Vector2(Random.value * 5 - 5, Random.value * 5 - 5);
+        Vector2 rnd = new Vector2(Random.value * posResetRndScale - posResetRndScale, Random.value * posResetRndScale - posResetRndScale);
         t.position = rnd + startPos;
     }
 
