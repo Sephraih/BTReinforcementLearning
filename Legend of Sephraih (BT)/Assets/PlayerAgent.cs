@@ -49,7 +49,8 @@ public class PlayerAgent : Agent
 
     }
 
-    public void ResetPosition(Transform t) {
+    public void ResetPosition(Transform t)
+    {
         Vector2 rnd = new Vector2(Random.value * posResetRndScale - posResetRndScale, Random.value * posResetRndScale - posResetRndScale);
         t.position = rnd + startPos;
     }
@@ -62,40 +63,42 @@ public class PlayerAgent : Agent
         AddVectorObs(transform.position);
         AddVectorObs(attackingDirection.transform.position);
 
-        AddVectorObs(distanceToTarget);
+        //AddVectorObs(distanceToTarget);
 
 
         AddVectorObs(Target.GetComponent<HealthController>().health);
+        AddVectorObs(GetComponent<HealthController>().health);
 
-       }
+    }
 
     public override void AgentAction(float[] vectorAction)
     {
-        
+
         // Actions
         Vector2 controlSignal = Vector2.zero;
         controlSignal.x = vectorAction[0];
         controlSignal.y = vectorAction[1];
-        
-        _q = vectorAction[2] >=0? true : false;
+
+        _q = vectorAction[2] >= 0 ? true : false;
         if (_q)
         {
             GetComponent<FireBolt>().Blast();
         }
 
+        /*
         _a = vectorAction[3] >= 0 ? true : false;
         if (_a)
         {
             GetComponent<MultiSlash>().Attack();
         }
+        */
 
 
-        
-        movementDirection = new Vector2(controlSignal.x *100,controlSignal.y*100);
+        movementDirection = new Vector2(controlSignal.x * 100, controlSignal.y * 100);
         movementDirection.Normalize();
         msi = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         GetComponent<MovementController>().Move(movementDirection, msi);
-        
+
         if (movementDirection != Vector2.zero)
         {
             attackingDirection.transform.localPosition = movementDirection * 0.5f;
@@ -112,7 +115,7 @@ public class PlayerAgent : Agent
             Done();
         }
 
-        if (GetComponent<HealthController>().health <=0)
+        if (GetComponent<HealthController>().health <= 0)
         {
             SetReward(-1.0f);
             Done();
@@ -120,23 +123,24 @@ public class PlayerAgent : Agent
 
         //target took dmg
         if (Target.GetComponent<HealthController>().health == Target.GetComponent<HealthController>().MaxHealth) { targetHealth = Target.GetComponent<HealthController>().MaxHealth; }
-        if (targetHealth > Target.GetComponent<HealthController>().health) {
+        if (targetHealth > Target.GetComponent<HealthController>().health)
+        {
             float dmgtaken = targetHealth - Target.GetComponent<HealthController>().health;
-            SetReward(0.01f*dmgtaken);
+            SetReward(0.01f * dmgtaken);
             targetHealth = Target.GetComponent<HealthController>().health;
         }
 
         //SetReward(-0.005f);
     }
 
-    
+
 
     public override float[] Heuristic()
     {
         var action = new float[2];
         action[0] = Input.GetAxis("Horizontal");
         action[1] = Input.GetAxis("Vertical");
-        if(Input.GetButtonUp("e")) action[2] = 1;
+        if (Input.GetButtonUp("e")) action[2] = 1;
         return action;
     }
 }
