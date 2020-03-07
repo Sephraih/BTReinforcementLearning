@@ -42,22 +42,8 @@ public class PlayerAgent : Agent
 
     public override void AgentReset()
     {
-        /*
-        //reset outofboundaries
-        if (distanceToTarget > 15.0f)
-        {
-            ResetPosition(transform);
-        }
-        */
-
-        // Move the target to a new spot
-        
-
-        if (GetComponent<HealthController>().health <= 0) { 
-            GetComponent<HealthController>().max();
-            ResetPosition(transform);
-        }
-
+        ResetPosition(transform);
+        GetComponent<HealthController>().max();
     }
 
     public void ResetPosition(Transform t)
@@ -72,7 +58,7 @@ public class PlayerAgent : Agent
 
         AddVectorObs(Target.position);
         AddVectorObs(transform.position);
-        AddVectorObs(attackingDirection.transform.position);
+        //AddVectorObs(attackingDirection.transform.position);
 
         //AddVectorObs(distanceToTarget);
 
@@ -117,27 +103,17 @@ public class PlayerAgent : Agent
 
         // Rewards
 
-
-        /*
-        // ran away
-        if (distanceToTarget > 15.0f)
-        {
-            SetReward(-0.5f);
-            Done();
-        }
-        */
-
         //target dead
         if (Target.GetComponent<HealthController>().health <= 0)
         {
-            SetReward(0.5f);
+            SetReward(0.9f);
             Done();
         }
 
         //agent dead
         if (GetComponent<HealthController>().health <= 0)
         {
-            SetReward(-0.5f);
+            SetReward(-0.9f);
             Done();
         }
 
@@ -146,7 +122,7 @@ public class PlayerAgent : Agent
         if (targetHealth > Target.GetComponent<HealthController>().health)
         {
             float dmgtaken = targetHealth - Target.GetComponent<HealthController>().health;
-            SetReward(0.005f * dmgtaken);
+            SetReward(0.0001f * dmgtaken);
             targetHealth = Target.GetComponent<HealthController>().health;
         }
 
@@ -155,7 +131,7 @@ public class PlayerAgent : Agent
         if (agentHealth > GetComponent<HealthController>().health)
         {
             float dmgtaken = agentHealth - GetComponent<HealthController>().health;
-            SetReward(-0.005f * dmgtaken);
+            SetReward(-0.0001f * dmgtaken);
             agentHealth = GetComponent<HealthController>().health;
         }
 

@@ -6,10 +6,11 @@ using UnityEngine;
 public class FireBolt : MonoBehaviour
 {
     private float offset = -90.0f; // default sprite rotation to align with vector.up
-    public string enemy = "Enemy";
+    //public string enemy = "Enemy";
 
     public GameObject projectile; //prefab
     public Transform shotPoint; // infront of character
+    public Transform user;
 
     private float cd; //remaining cooldown
     public float startcd; //ability cooldown
@@ -55,7 +56,7 @@ public class FireBolt : MonoBehaviour
         {
             //instantiate and assign values to a firebolt projectile, which handles damaging, position and collision logic based on the fireboltprojectile script attached to it.
             var bolt = Instantiate(projectile, shotPoint.position, shotPoint.transform.rotation);
-            bolt.GetComponent<FireBoltProjectile>().enemy = this.enemy;
+            bolt.GetComponent<FireBoltProjectile>().user = user;
             bolt.GetComponent<FireBoltProjectile>().dmg =dmg; //+= this.GetComponent<StatusController>().matk;
             //bolt.GetComponent<FireBoltProjectile>().dotd += this.GetComponent<StatusController>().matk;
             //bolt.GetComponent<FireBoltProjectile>().slow = slow;

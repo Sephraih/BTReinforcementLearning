@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class FireBoltProjectile : MonoBehaviour
 {
-    public string enemy ="Enemy"; // caster's enemy, from fire bolt script, default set to enemy units
+    //public string enemy ="Enemy"; // caster's enemy, from fire bolt script, default set to enemy units
     public float speed;
     public float lifetime;
     public int dmg; // damage of direct hit
     public int dotd; // damage over time damage
     public int dott; // damage over time duration
     public float slow; // slow amount
+    public Transform user;
 
     private List<Collider2D> damagedTargets = new List<Collider2D>(); // list to save targets that have been damaged,
 
@@ -31,7 +32,7 @@ public class FireBoltProjectile : MonoBehaviour
         foreach (Collider2D collider in overlapColliders)
         {
             
-            if (collider.CompareTag(enemy) && collider.isTrigger) // all enemy colliders, each character has 2 colliders, only the trigger collider is used
+            if (collider.transform !=user && collider.isTrigger &&collider.CompareTag("Player")) // all enemy colliders, each character has 2 colliders, only the trigger collider is used
             {
                 if (!damagedTargets.Contains(collider)) //before the bolt is destroyed, it checks for colliders on every frame, which might result in duplicate application, which is unwished for
                 {
