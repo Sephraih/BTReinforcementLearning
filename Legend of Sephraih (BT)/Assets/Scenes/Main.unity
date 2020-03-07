@@ -6401,12 +6401,14 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 0
+  Target: {fileID: 913296801}
+  targetHealth: 0
   movementDirection: {x: 0, y: 0}
   msi: 0
-  targetHealth: 0
+  agentHealth: 0
   startPos: {x: 0, y: 0}
+  posResetRndScale: 0
   attackingDirection: {fileID: 1261123462}
-  Target: {fileID: 913296801}
 --- !u!114 &243654505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6437,14 +6439,14 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 11
     numStackedVectorObservations: 1
-    vectorActionSize: 04000000
+    vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 6060c4c277c91874aa3848bbb68b5182, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 614527867fe5d2147a2c42383270290c, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
-  m_TeamID: 0
+  m_TeamID: 1
   m_UseChildSensors: 1
 --- !u!61 &243654507
 BoxCollider2D:
@@ -11632,7 +11634,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913296795}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33e67aeccda444e47b729db1fded2d16, type: 3}
   m_Name: 
@@ -11889,12 +11891,14 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 0
+  Target: {fileID: 243654512}
+  targetHealth: 0
   movementDirection: {x: 0, y: 0}
   msi: 0
-  targetHealth: 0
+  agentHealth: 0
   startPos: {x: 0, y: 0}
+  posResetRndScale: 0
   attackingDirection: {fileID: 141768371}
-  Target: {fileID: 243654512}
 --- !u!114 &913296809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11926,10 +11930,10 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 11
     numStackedVectorObservations: 1
-    vectorActionSize: 04000000
+    vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 614527867fe5d2147a2c42383270290c, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain

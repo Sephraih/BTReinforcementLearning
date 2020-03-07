@@ -4,10 +4,17 @@ using UnityEngine;
 using MLAgents;
 public class PlayerAgent : Agent
 {
+
+    public Transform Target;
     float distanceToTarget;
+    public float targetHealth;
+
+
     public Vector2 movementDirection;
     public float msi;
-    public float targetHealth;
+    public float agentHealth;
+
+
     public Vector2 startPos;
     public int posResetRndScale = 10;
 
@@ -30,22 +37,26 @@ public class PlayerAgent : Agent
     void Start()
     {
         targetHealth = Target.GetComponent<HealthController>().MaxHealth;
+        agentHealth = GetComponent<HealthController>().MaxHealth;
     }
 
-    public Transform Target;
     public override void AgentReset()
     {
+        /*
         //reset outofboundaries
         if (distanceToTarget > 15.0f)
         {
             ResetPosition(transform);
         }
+        */
+
         // Move the target to a new spot
-        else
-            ResetPosition(Target);
+        
 
-
-        if (GetComponent<HealthController>().health <= 0) { GetComponent<HealthController>().max(); }
+        if (GetComponent<HealthController>().health <= 0) { 
+            GetComponent<HealthController>().max();
+            ResetPosition(transform);
+        }
 
     }
 
@@ -107,17 +118,26 @@ public class PlayerAgent : Agent
         // Rewards
 
 
-
+        /*
         // ran away
         if (distanceToTarget > 15.0f)
         {
             SetReward(-0.5f);
             Done();
         }
+        */
 
+        //target dead
+        if (Target.GetComponent<HealthController>().health <= 0)
+        {
+            SetReward(0.5f);
+            Done();
+        }
+
+        //agent dead
         if (GetComponent<HealthController>().health <= 0)
         {
-            SetReward(-1.0f);
+            SetReward(-0.5f);
             Done();
         }
 
@@ -126,11 +146,19 @@ public class PlayerAgent : Agent
         if (targetHealth > Target.GetComponent<HealthController>().health)
         {
             float dmgtaken = targetHealth - Target.GetComponent<HealthController>().health;
-            SetReward(0.01f * dmgtaken);
+            SetReward(0.005f * dmgtaken);
             targetHealth = Target.GetComponent<HealthController>().health;
         }
 
-        //SetReward(-0.005f);
+        //agent took dmg
+        if (GetComponent<HealthController>().health == GetComponent<HealthController>().MaxHealth) { agentHealth = GetComponent<HealthController>().MaxHealth; }
+        if (agentHealth > GetComponent<HealthController>().health)
+        {
+            float dmgtaken = agentHealth - GetComponent<HealthController>().health;
+            SetReward(-0.005f * dmgtaken);
+            agentHealth = GetComponent<HealthController>().health;
+        }
+
     }
 
 
