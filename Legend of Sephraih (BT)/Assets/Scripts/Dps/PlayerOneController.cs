@@ -107,7 +107,7 @@ public class PlayerOneController : MonoBehaviour
     void Reset() {
         if (GetComponent<HealthController>().health <= 0)
         {
-            GetComponent<HealthController>().max();
+            GetComponent<HealthController>().Max();
             GetComponent<PlayerAgent>().ResetPosition(transform);
         }
     }

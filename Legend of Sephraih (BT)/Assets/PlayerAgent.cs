@@ -15,8 +15,8 @@ public class PlayerAgent : Agent
     public float agentHealth;
 
 
-    public Vector2 startPos;
     public int posResetRndScale = 10;
+    public GameObject arena;
 
 
     public GameObject attackingDirection; // object used to calculate a vector of attack
@@ -43,55 +43,52 @@ public class PlayerAgent : Agent
     public override void AgentReset()
     {
         ResetPosition(transform);
-        GetComponent<HealthController>().max();
+        print("oi");
+        GetComponent<HealthController>().Max();
     }
 
     public void ResetPosition(Transform t)
     {
         Vector2 rnd = new Vector2(Random.value * posResetRndScale - posResetRndScale, Random.value * posResetRndScale - posResetRndScale);
-        t.position = rnd + startPos;
+        t.position = new Vector2(rnd.x + arena.transform.position.x,rnd.y + arena.transform.position.y);
     }
 
+
+    //observation Vector
     public override void CollectObservations()
     {
         // Target and Agent positions
 
         AddVectorObs(Target.position);
         AddVectorObs(transform.position);
-        //AddVectorObs(attackingDirection.transform.position);
-
-        //AddVectorObs(distanceToTarget);
-
-
         AddVectorObs(Target.GetComponent<HealthController>().health);
         AddVectorObs(GetComponent<HealthController>().health);
 
     }
 
+    //action Vector
     public override void AgentAction(float[] vectorAction)
     {
 
-        // Actions
-        Vector2 controlSignal = Vector2.zero;
-        controlSignal.x = vectorAction[0];
-        controlSignal.y = vectorAction[1];
+        // Actions -> unity documentation: By default the output from our provided PPO algorithm pre-clamps the values of vectorAction into the [-1, 1]
+        Vector2 movementAction = Vector2.zero;
+        movementAction.x = vectorAction[0];
+        movementAction.y = vectorAction[1];
 
-        _q = vectorAction[2] >= 0 ? true : false;
+        Vector2 attDir = Vector2.zero;
+        attDir.x = vectorAction[2];
+        attDir.y = vectorAction[3];
+
+
+        _q = vectorAction[4] >= 0.5f ? true : false;
         if (_q)
         {
-            GetComponent<FireBolt>().Blast();
+            GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x,attDir.y));
         }
 
-        /*
-        _a = vectorAction[3] >= 0 ? true : false;
-        if (_a)
-        {
-            GetComponent<MultiSlash>().Attack();
-        }
-        */
 
 
-        movementDirection = new Vector2(controlSignal.x * 100, controlSignal.y * 100);
+        movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
         movementDirection.Normalize();
         msi = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         GetComponent<MovementController>().Move(movementDirection, msi);
@@ -141,10 +138,13 @@ public class PlayerAgent : Agent
 
     public override float[] Heuristic()
     {
-        var action = new float[2];
+        var action = new float[5];
         action[0] = Input.GetAxis("Horizontal");
         action[1] = Input.GetAxis("Vertical");
-        if (Input.GetButtonUp("e")) action[2] = 1;
+        action[2] = Input.GetAxis("Horizontal");
+        action[3] = Input.GetAxis("Vertical");
+        action[4] = Input.GetButtonUp("e") == true?  1f : 0f;
+
         return action;
     }
 }

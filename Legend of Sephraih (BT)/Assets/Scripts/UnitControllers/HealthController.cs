@@ -18,7 +18,7 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
-        max(); // initialize character to start at max health
+        Max(); // initialize character to start at max health
 
         //loading prefabs to be instantiated later
         bloodEffect = Resources.Load("Prefabs/BloodEffectPrefab") as GameObject;
@@ -85,8 +85,9 @@ public class HealthController : MonoBehaviour
 
     }
 
-    public void max() {
+    public void Max() {
         health = MaxHealth;
+        ShowHealText(MaxHealth);
     }
 
 }

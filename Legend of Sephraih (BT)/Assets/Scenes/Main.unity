@@ -6005,7 +6005,7 @@ GameObject:
   - component: {fileID: 243654499}
   - component: {fileID: 243654498}
   m_Layer: 9
-  m_Name: P2
+  m_Name: Red (p2)
   m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6119,8 +6119,8 @@ MonoBehaviour:
   movementDirection: {x: 0, y: 0}
   msi: 0
   agentHealth: 0
-  startPos: {x: 0, y: 0}
   posResetRndScale: 5
+  arena: {fileID: 348355929}
   attackingDirection: {fileID: 1261123462}
 --- !u!114 &243654505
 MonoBehaviour:
@@ -6136,7 +6136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 1
   RepeatAction: 1
-  offsetStep: 1
+  offsetStep: 0
 --- !u!114 &243654506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6152,15 +6152,15 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 8
     numStackedVectorObservations: 1
-    vectorActionSize: 03000000
+    vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
-  m_TeamID: -1
-  m_UseChildSensors: 0
+  m_TeamID: 1
+  m_UseChildSensors: 1
 --- !u!61 &243654507
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10004,7 +10004,7 @@ GameObject:
   - component: {fileID: 913296806}
   - component: {fileID: 913296805}
   m_Layer: 9
-  m_Name: P1
+  m_Name: Blue (p1)
   m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10237,7 +10237,7 @@ MonoBehaviour:
   startDelay: 0.5
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
 --- !u!114 &913296807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10279,8 +10279,8 @@ MonoBehaviour:
   movementDirection: {x: 0, y: 0}
   msi: 0
   agentHealth: 0
-  startPos: {x: 0, y: 0}
   posResetRndScale: 5
+  arena: {fileID: 348355929}
   attackingDirection: {fileID: 141768371}
 --- !u!114 &913296809
 MonoBehaviour:
@@ -10313,15 +10313,15 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 8
     numStackedVectorObservations: 1
-    vectorActionSize: 03000000
+    vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
-  m_TeamID: 1
-  m_UseChildSensors: 0
+  m_TeamID: 0
+  m_UseChildSensors: 1
 --- !u!114 &913296813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10336,7 +10336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   RepeatAction: 1
-  offsetStep: 1
+  offsetStep: 0
 --- !u!1001 &935072814
 PrefabInstance:
   m_ObjectHideFlags: 0
