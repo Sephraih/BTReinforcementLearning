@@ -208,7 +208,7 @@ MonoBehaviour:
     vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 39933eb587f9864408d4eb4686673842, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: aee9a29d3b1cb1a4086f12c885b2a04f, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
@@ -486,7 +486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5750737119770769545
 Transform:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5750737120040176245}
   m_Layer: 0
-  m_Name: Arena 1
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6044,7 +6044,7 @@ MonoBehaviour:
     vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 39933eb587f9864408d4eb4686673842, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: aee9a29d3b1cb1a4086f12c885b2a04f, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
