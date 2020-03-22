@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5750737119526615688}
   - component: {fileID: 5750737119526615689}
   - component: {fileID: 5750737119526615690}
+  - component: {fileID: 6804763462367023696}
   m_Layer: 9
   m_Name: Blue (p1)
   m_TagString: Player
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1888405239356951315, guid: 61ff590124f6fc245a9d1a627bf5917f,
     type: 3}
-  m_Color: {r: 0, g: 0.23484325, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.19427729, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -208,7 +209,7 @@ MonoBehaviour:
     vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: aee9a29d3b1cb1a4086f12c885b2a04f, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 6f90a638964bf5c44bc1117d70e3cd8e, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
@@ -357,6 +358,22 @@ MonoBehaviour:
   startcd: 1
   dmg: 100
   slow: 0.3
+--- !u!114 &6804763462367023696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5750737119526615732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a7b0574be390141957f035b6566554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmgDone: 0
+  dmgTaken: 0
+  lived: 0
+  victories: 0
 --- !u!1 &5750737119661623134
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,6 +5876,7 @@ GameObject:
   - component: {fileID: 5750737120480421963}
   - component: {fileID: 5750737120480421964}
   - component: {fileID: 5750737120480421965}
+  - component: {fileID: 5320100369528411972}
   m_Layer: 9
   m_Name: Red (p2)
   m_TagString: Player
@@ -6044,7 +6062,7 @@ MonoBehaviour:
     vectorActionSize: 05000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: aee9a29d3b1cb1a4086f12c885b2a04f, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 6f90a638964bf5c44bc1117d70e3cd8e, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
@@ -6176,6 +6194,22 @@ MonoBehaviour:
   startcd: 1
   dmg: 100
   slow: 0.3
+--- !u!114 &5320100369528411972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5750737120480421966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a7b0574be390141957f035b6566554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmgDone: 0
+  dmgTaken: 0
+  lived: 0
+  victories: 0
 --- !u!1 &5750737120594193033
 GameObject:
   m_ObjectHideFlags: 0

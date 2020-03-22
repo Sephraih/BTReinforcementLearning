@@ -9,13 +9,12 @@ public class PlayerAgent : Agent
     float distanceToTarget;
     public float targetHealth;
 
-
     public Vector2 movementDirection;
     public float msi;
     public float agentHealth;
 
 
-    public int posResetRndScale = 10;
+    public int posResetRndScale = 14;
     public GameObject arena;
 
 
@@ -43,14 +42,17 @@ public class PlayerAgent : Agent
     public override void AgentReset()
     {
         ResetPosition(transform);
-        print("oi");
         GetComponent<HealthController>().Max();
     }
 
     public void ResetPosition(Transform t)
     {
-        Vector2 rnd = new Vector2(Random.value * posResetRndScale - posResetRndScale, Random.value * posResetRndScale - posResetRndScale);
-        t.position = new Vector2(rnd.x + arena.transform.position.x,rnd.y + arena.transform.position.y);
+        //Vector2 rnd = new Vector2(Random.value * posResetRndScale*2 - posResetRndScale, Random.value * posResetRndScale*2 - posResetRndScale);
+        //t.position = new Vector2(rnd.x + arena.transform.position.x, rnd.y + arena.transform.position.y);
+        float v = Random.Range(-11.5f,14.5f);
+        float h = Random.Range(-18.0f,18.0f);
+        Vector2 arenaPos = arena.transform.position;
+        t.position = new Vector2(h,v)+arenaPos;
     }
 
 
@@ -83,7 +85,7 @@ public class PlayerAgent : Agent
         _q = vectorAction[4] >= 0.5f ? true : false;
         if (_q)
         {
-            GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x,attDir.y));
+            GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x, attDir.y));
         }
 
 
@@ -103,14 +105,17 @@ public class PlayerAgent : Agent
         //target dead
         if (Target.GetComponent<HealthController>().health <= 0)
         {
-            SetReward(0.9f);
-            Done();
+            float ks = GetComponent<CharacterStats>().ks();
+            SetReward(0.05f + ks * 0.05f); ;
+            GetComponent<CharacterStats>().Won();
+            print("ks= " + (ks + 1));
+            Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1);
         }
 
         //agent dead
         if (GetComponent<HealthController>().health <= 0)
         {
-            SetReward(-0.9f);
+            SetReward(-0.5f);
             Done();
         }
 
@@ -118,8 +123,9 @@ public class PlayerAgent : Agent
         if (Target.GetComponent<HealthController>().health == Target.GetComponent<HealthController>().MaxHealth) { targetHealth = Target.GetComponent<HealthController>().MaxHealth; }
         if (targetHealth > Target.GetComponent<HealthController>().health)
         {
-            float dmgtaken = targetHealth - Target.GetComponent<HealthController>().health;
-            SetReward(0.0001f * dmgtaken);
+            float dmgDone = targetHealth - Target.GetComponent<HealthController>().health;
+            SetReward(0.0001f * dmgDone); //1000 damage available = 0.1f reward per enemy, 0.01 /hit
+            GetComponent<CharacterStats>().DmgDone(dmgDone);
             targetHealth = Target.GetComponent<HealthController>().health;
         }
 
@@ -127,10 +133,13 @@ public class PlayerAgent : Agent
         if (GetComponent<HealthController>().health == GetComponent<HealthController>().MaxHealth) { agentHealth = GetComponent<HealthController>().MaxHealth; }
         if (agentHealth > GetComponent<HealthController>().health)
         {
-            float dmgtaken = agentHealth - GetComponent<HealthController>().health;
-            SetReward(-0.0001f * dmgtaken);
+            float dmgTaken = agentHealth - GetComponent<HealthController>().health;
+            SetReward(-0.0001f * dmgTaken);
+            GetComponent<CharacterStats>().DmgTaken(dmgTaken);
             agentHealth = GetComponent<HealthController>().health;
         }
+
+        SetReward(-0.001f); //doing nothing
 
     }
 
@@ -143,7 +152,7 @@ public class PlayerAgent : Agent
         action[1] = Input.GetAxis("Vertical");
         action[2] = Input.GetAxis("Horizontal");
         action[3] = Input.GetAxis("Vertical");
-        action[4] = Input.GetButtonUp("e") == true?  1f : 0f;
+        action[4] = Input.GetButtonUp("e") == true ? 1f : 0f;
 
         return action;
     }

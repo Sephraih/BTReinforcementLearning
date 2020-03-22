@@ -5271,8 +5271,8 @@ MonoBehaviour:
   movementDirection: {x: 0, y: 0}
   msi: 0
   agentHealth: 0
-  startPos: {x: 0, y: 0}
   posResetRndScale: 0
+  arena: {fileID: 0}
   attackingDirection: {fileID: 6771319127264716370}
 --- !u!114 &6771319128037203325
 MonoBehaviour:
