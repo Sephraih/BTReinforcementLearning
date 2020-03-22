@@ -43,6 +43,7 @@ public class PlayerAgent : Agent
     {
         ResetPosition(transform);
         GetComponent<HealthController>().Max();
+        GetComponent<CharacterStats>().Reset();
     }
 
     public void ResetPosition(Transform t)
@@ -119,6 +120,7 @@ public class PlayerAgent : Agent
             Done();
         }
 
+        /*
         //target took dmg
         if (Target.GetComponent<HealthController>().health == Target.GetComponent<HealthController>().MaxHealth) { targetHealth = Target.GetComponent<HealthController>().MaxHealth; }
         if (targetHealth > Target.GetComponent<HealthController>().health)
@@ -138,6 +140,7 @@ public class PlayerAgent : Agent
             GetComponent<CharacterStats>().DmgTaken(dmgTaken);
             agentHealth = GetComponent<HealthController>().health;
         }
+        */
 
         SetReward(-0.001f); //doing nothing
 

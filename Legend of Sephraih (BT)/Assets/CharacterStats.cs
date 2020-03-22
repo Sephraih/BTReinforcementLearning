@@ -32,4 +32,12 @@ public class CharacterStats : MonoBehaviour
     public float ks() {
         return victories;
     }
+
+    public void Reset()
+    {
+        dmgDone = 0;
+        dmgTaken = 0;
+        lived = 0;
+        victories = 0;
+    }
 }

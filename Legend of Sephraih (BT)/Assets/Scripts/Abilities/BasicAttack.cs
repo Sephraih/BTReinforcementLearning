@@ -54,7 +54,7 @@ public class BasicAttack : MonoBehaviour
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {   
                 if(enemiesToDamage[i].isTrigger)
-                enemiesToDamage[i].GetComponent<HealthController>().TakeDamage(damage);
+                enemiesToDamage[i].GetComponent<HealthController>().TakeDamage(damage,transform);
             }
                 delay = startDelay;
             

@@ -13,6 +13,7 @@ public class Statistics : MonoBehaviour
     void Start()
     {
         time = 0;
+        hks = 0;
     }
 
     // Update is called once per frame

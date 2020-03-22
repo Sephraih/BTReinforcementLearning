@@ -49,7 +49,7 @@ public class HealWaveProjectile : MonoBehaviour
                 if (!damagedTargets.Contains(collider))
                 {
                     damagedTargets.Add(collider);
-                    collider.GetComponent<HealthController>().TakeDamage(heal/2);
+                    collider.GetComponent<HealthController>().TakeDamage(heal/2,user);
                 }
             }
 

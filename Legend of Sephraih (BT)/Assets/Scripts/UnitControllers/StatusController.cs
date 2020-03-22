@@ -35,9 +35,9 @@ public class StatusController : MonoBehaviour
     }
 
     // burn the character for a total amount of damage over a certain time, slowing it for the duration
-    public void Burn(float totalDmg, float time)
+    public void Burn(float totalDmg, float time, Transform dmger)
     {
-        StartCoroutine(DoTCoroutine(totalDmg, time));
+        StartCoroutine(DoTCoroutine(totalDmg, time,dmger));
     }
 
     // slow the character's speed to a percentual amount of its default speed for given time
@@ -51,7 +51,7 @@ public class StatusController : MonoBehaviour
 
 
     // coroutines make it possible to have events last for a period of time opposed to finishing with a method that must terminate in a single and each frame
-    IEnumerator DoTCoroutine(float dmg, float time)
+    IEnumerator DoTCoroutine(float dmg, float time, Transform dmger)
     {
         float amountDamaged = 0;
         GameObject burn = Instantiate(burnEffect, transform.position, Quaternion.Euler(-90f, 0f,0f));
@@ -61,7 +61,7 @@ public class StatusController : MonoBehaviour
         while (amountDamaged < dmg)
         {
             // apply dmg dmg/time
-            this.GetComponent<HealthController>().TakeDamage((int)(dmg / time));
+            this.GetComponent<HealthController>().TakeDamage((int)(dmg / time),dmger);
             amountDamaged += dmg / time;
             yield return new WaitForSeconds(1f);
         }

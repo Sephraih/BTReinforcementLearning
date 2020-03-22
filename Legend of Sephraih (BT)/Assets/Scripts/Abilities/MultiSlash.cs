@@ -60,7 +60,7 @@ public class MultiSlash : MonoBehaviour
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {
                 if (enemiesToDamage[i].isTrigger && enemiesToDamage[i].transform !=transform) //not the user
-                    enemiesToDamage[i].GetComponent<HealthController>().TakeDamage((dmg));
+                    enemiesToDamage[i].GetComponent<HealthController>().TakeDamage(dmg,transform);
             }
             comboCount++;
             delay = comboDelay;
