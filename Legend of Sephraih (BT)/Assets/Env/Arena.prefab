@@ -204,13 +204,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 8
+    vectorObservationSize: 4
     numStackedVectorObservations: 1
-    vectorActionSize: 05000000
+    vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 5022602860645237092, guid: 6f90a638964bf5c44bc1117d70e3cd8e, type: 3}
-  m_InferenceDevice: 1
+  m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
   m_TeamID: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  maxStep: 5000
+  maxStep: 20000
   Target: {fileID: 5750737120480421983}
   targetHealth: 0
   movementDirection: {x: 0, y: 0}
@@ -356,7 +356,7 @@ MonoBehaviour:
   shotPoint: {fileID: 5750737120366264731}
   user: {fileID: 5750737119526615694}
   startcd: 1
-  dmg: 100
+  dmg: 200
   slow: 0.3
 --- !u!114 &6804763462367023696
 MonoBehaviour:
@@ -1168,7 +1168,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.5660378, g: 0.07706125, b: 0, a: 1}
+      maxColor: {r: 0, g: 0.0983504, b: 0.5647059, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6057,13 +6057,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 8
+    vectorObservationSize: 4
     numStackedVectorObservations: 1
-    vectorActionSize: 05000000
+    vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 5022602860645237092, guid: 6f90a638964bf5c44bc1117d70e3cd8e, type: 3}
-  m_InferenceDevice: 1
+  m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: SephraihBrain
   m_TeamID: 1
@@ -6098,7 +6098,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  maxStep: 5000
+  maxStep: 20000
   Target: {fileID: 5750737119526615694}
   targetHealth: 0
   movementDirection: {x: 0, y: 0}
@@ -6192,7 +6192,7 @@ MonoBehaviour:
   shotPoint: {fileID: 5750737121494007976}
   user: {fileID: 5750737120480421983}
   startcd: 1
-  dmg: 100
+  dmg: 200
   slow: 0.3
 --- !u!114 &5320100369528411972
 MonoBehaviour:

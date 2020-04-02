@@ -111,13 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22217599e5592946a06b570f35bfed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: Enemy
-  speed: 50
+  speed: 25
   lifetime: 0.5
   dmg: 50
   dotd: 100
   dott: 10
   slow: 0.5
+  user: {fileID: 0}
   destroyEffect: {fileID: 986805914817456092, guid: 25abb332a4bf4a843aa274daafa7adfc,
     type: 3}
 --- !u!198 &7170307868503398169

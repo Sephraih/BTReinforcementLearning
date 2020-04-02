@@ -37,8 +37,14 @@ public class HealthController : MonoBehaviour
         dmger.GetComponent<CharacterStats>().DmgDone(damage); //update stats
 
 
-        GetComponent<PlayerAgent>().SetReward(damage * -rewardmodifier); //reward to attached character (dmgd)
+        //GetComponent<PlayerAgent>().SetReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
         GetComponent<CharacterStats>().DmgTaken(damage); //update stats
+
+        if (damage >= health)
+        {
+            dmger.GetComponent<PlayerAgent>().Victory();
+            GetComponent<PlayerAgent>().Defeat();
+        }
 
 
         GameObject blood = Instantiate(bloodEffect, transform.position, Quaternion.identity); // at character's position without any rotation

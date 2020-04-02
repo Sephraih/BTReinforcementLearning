@@ -50,22 +50,24 @@ public class PlayerAgent : Agent
     {
         //Vector2 rnd = new Vector2(Random.value * posResetRndScale*2 - posResetRndScale, Random.value * posResetRndScale*2 - posResetRndScale);
         //t.position = new Vector2(rnd.x + arena.transform.position.x, rnd.y + arena.transform.position.y);
-        float v = Random.Range(-11.5f,14.5f);
-        float h = Random.Range(-18.0f,18.0f);
+        float v = Random.Range(-11.5f, 14.5f);
+        float h = Random.Range(-18.0f, 18.0f);
         Vector2 arenaPos = arena.transform.position;
-        t.position = new Vector2(h,v)+arenaPos;
+        t.position = new Vector2(h, v) + arenaPos;
     }
 
 
     //observation Vector
     public override void CollectObservations()
     {
-        // Target and Agent positions
+        //AddVectorObs(distanceToTarget);
+        AddVectorObs(Target.localPosition.x);
+        AddVectorObs(Target.localPosition.y);
+        AddVectorObs(transform.localPosition.x);
+        AddVectorObs(transform.localPosition.y);
 
-        AddVectorObs(Target.position);
-        AddVectorObs(transform.position);
-        AddVectorObs(Target.GetComponent<HealthController>().health);
-        AddVectorObs(GetComponent<HealthController>().health);
+        //AddVectorObs(Target.GetComponent<HealthController>().health);
+        //AddVectorObs(GetComponent<HealthController>().health);
 
     }
 
@@ -78,18 +80,18 @@ public class PlayerAgent : Agent
         movementAction.x = vectorAction[0];
         movementAction.y = vectorAction[1];
 
-        Vector2 attDir = Vector2.zero;
+        /*Vector2 attDir = Vector2.zero;
         attDir.x = vectorAction[2];
-        attDir.y = vectorAction[3];
+        attDir.y = vectorAction[3];*/
 
 
-        _q = vectorAction[4] >= 0.5f ? true : false;
+        _q = vectorAction[2] >= 0.5f ? true : false;
         if (_q)
         {
-            GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x, attDir.y));
+            //GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x, attDir.y)); // -1 to 1 on both x y corresponding to vector added to user pos
+            //GetComponent<FireBolt>().BlastAngle(vectorAction[2]); //at angle -1 to 1 corresponding to -180 to 180
+            GetComponent<FireBolt>().Blast(); //frontal blast
         }
-
-
 
         movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
         movementDirection.Normalize();
@@ -101,25 +103,8 @@ public class PlayerAgent : Agent
             attackingDirection.transform.localPosition = movementDirection * 0.5f;
         }
 
-        // Rewards
-
-        //target dead
-        if (Target.GetComponent<HealthController>().health <= 0)
-        {
-            float ks = GetComponent<CharacterStats>().ks();
-            SetReward(0.05f + ks * 0.05f); ;
-            GetComponent<CharacterStats>().Won();
-            print("ks= " + (ks + 1));
-            Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1);
-        }
-
-        //agent dead
-        if (GetComponent<HealthController>().health <= 0)
-        {
-            SetReward(-0.5f);
-            Done();
-        }
-
+        // Rewards (external: healthcontroller)
+        
         /*
         //target took dmg
         if (Target.GetComponent<HealthController>().health == Target.GetComponent<HealthController>().MaxHealth) { targetHealth = Target.GetComponent<HealthController>().MaxHealth; }
@@ -141,9 +126,21 @@ public class PlayerAgent : Agent
             agentHealth = GetComponent<HealthController>().health;
         }
         */
+        if (distanceToTarget>20.0f) SetReward(-0.005f); //far from enemy (being lame)
 
-        SetReward(-0.001f); //doing nothing
+    }
 
+    public void Victory() {
+        float ks = GetComponent<CharacterStats>().ks();
+        SetReward(0.05f + ks * 0.05f); ;
+        GetComponent<CharacterStats>().Won();
+        print("ks= " + (ks + 1));
+        Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1);
+    }
+
+    public void Defeat() {
+        SetReward(-0.5f);
+        Done();
     }
 
 

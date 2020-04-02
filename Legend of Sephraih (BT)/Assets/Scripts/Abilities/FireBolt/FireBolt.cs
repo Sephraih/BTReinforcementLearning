@@ -15,7 +15,7 @@ public class FireBolt : MonoBehaviour
     private float cd; //remaining cooldown
     public float startcd; //ability cooldown
     public int dmg = 50;
-
+    
     public float slow = 0.5f; //default movement speed * slow
 
     //reduce cooldown each frame based on time passed
@@ -38,13 +38,12 @@ public class FireBolt : MonoBehaviour
     //same use as blast but shooting towards mouse position, delay zero for testing
     public void BlastMouse()
     {
-
-
+        
         Vector2 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; // vector from transform to mouse
 
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector
         shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offset);
-        Bolt();
+        Bolt(); 
 
     }
 
@@ -57,7 +56,7 @@ public class FireBolt : MonoBehaviour
             //instantiate and assign values to a firebolt projectile, which handles damaging, position and collision logic based on the fireboltprojectile script attached to it.
             var bolt = Instantiate(projectile, shotPoint.position, shotPoint.transform.rotation);
             bolt.GetComponent<FireBoltProjectile>().user = user;
-            bolt.GetComponent<FireBoltProjectile>().dmg =dmg; //+= this.GetComponent<StatusController>().matk;
+            bolt.GetComponent<FireBoltProjectile>().dmg = dmg; //+= this.GetComponent<StatusController>().matk;
             //bolt.GetComponent<FireBoltProjectile>().dotd += this.GetComponent<StatusController>().matk;
             //bolt.GetComponent<FireBoltProjectile>().slow = slow;
 
@@ -71,11 +70,21 @@ public class FireBolt : MonoBehaviour
     public void BlastVec(Vector2 dir)
     {
 
-
+        dir = dir + new Vector2(transform.position.x, transform.position.y); //move directionvectorcenter to character
         Vector2 difference = new Vector2(dir.x - transform.position.x, dir.y - transform.position.y); // vector from transform dir
 
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector
         shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offset);
+        Bolt();
+
+    }
+
+    public void BlastAngle(float angle)
+    {
+        //angle must be between -1 and 1 (mlagents clamps vectoraction space to -1 to 1)
+        angle *= 180;
+
+        shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, angle - offset);
         Bolt();
 
     }
