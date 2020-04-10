@@ -5,7 +5,7 @@ using MLAgents;
 public class PlayerAgent : Agent
 {
 
-    public Transform Target;
+    public Transform enemy;
     float distanceToTarget;
     public float targetHealth;
 
@@ -16,6 +16,7 @@ public class PlayerAgent : Agent
 
     public int posResetRndScale = 14;
     public GameObject arena;
+    public int teamID;
 
 
     public GameObject attackingDirection; // object used to calculate a vector of attack
@@ -28,22 +29,25 @@ public class PlayerAgent : Agent
     private bool _e;
 
 
-    void Update()
-    {
-        distanceToTarget = Vector2.Distance(this.transform.position, Target.position);
-    }
+
 
     void Start()
     {
-        targetHealth = Target.GetComponent<HealthController>().MaxHealth;
+        targetHealth = enemy.GetComponent<HealthController>().MaxHealth;
         agentHealth = GetComponent<HealthController>().MaxHealth;
+        arena.GetComponent<ArenaBehaviour>().Register(transform);
+        GetComponent<StatusController>().teamID = GetComponent<BehaviorParameters>().m_TeamID;
     }
 
     public override void AgentReset()
     {
+        //currentsteps at this point is zero, triggered at max steps or when Done();
         ResetPosition(transform);
         GetComponent<HealthController>().Max();
         GetComponent<CharacterStats>().Reset();
+
+
+        GetComponent<CharacterStats>().TotalSteps(maxStep);
     }
 
     public void ResetPosition(Transform t)
@@ -60,9 +64,10 @@ public class PlayerAgent : Agent
     //observation Vector
     public override void CollectObservations()
     {
+        arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena
         //AddVectorObs(distanceToTarget);
-        AddVectorObs(Target.localPosition.x);
-        AddVectorObs(Target.localPosition.y);
+        AddVectorObs(enemy.localPosition.x);
+        AddVectorObs(enemy.localPosition.y);
         AddVectorObs(transform.localPosition.x);
         AddVectorObs(transform.localPosition.y);
 
@@ -74,6 +79,10 @@ public class PlayerAgent : Agent
     //action Vector
     public override void AgentAction(float[] vectorAction)
     {
+
+
+        distanceToTarget = Vector2.Distance(this.transform.position, enemy.position);
+        if (GetStepCount() > 0 && GetStepCount() % 1000 == 0) GetComponent<CharacterStats>().DpSteps(GetStepCount());
 
         // Actions -> unity documentation: By default the output from our provided PPO algorithm pre-clamps the values of vectorAction into the [-1, 1]
         Vector2 movementAction = Vector2.zero;
@@ -90,10 +99,16 @@ public class PlayerAgent : Agent
         {
             //GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x, attDir.y)); // -1 to 1 on both x y corresponding to vector added to user pos
             //GetComponent<FireBolt>().BlastAngle(vectorAction[2]); //at angle -1 to 1 corresponding to -180 to 180
-            GetComponent<FireBolt>().Blast(); //frontal blast
+            //GetComponent<FireBolt>().Blast(); //frontal blast
+            GetComponent<FireBolt>().BlastTarget(new Vector2(enemy.localPosition.x, enemy.localPosition.y));
+        }
+        _a = vectorAction[3] >= 0.5f ? true : false;
+        if (_a)
+        {
+            GetComponent<MultiSlash>().Attack();
         }
 
-        movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
+            movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
         movementDirection.Normalize();
         msi = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         GetComponent<MovementController>().Move(movementDirection, msi);
@@ -104,7 +119,7 @@ public class PlayerAgent : Agent
         }
 
         // Rewards (external: healthcontroller)
-        
+
         /*
         //target took dmg
         if (Target.GetComponent<HealthController>().health == Target.GetComponent<HealthController>().MaxHealth) { targetHealth = Target.GetComponent<HealthController>().MaxHealth; }
@@ -126,11 +141,12 @@ public class PlayerAgent : Agent
             agentHealth = GetComponent<HealthController>().health;
         }
         */
-        if (distanceToTarget>20.0f) SetReward(-0.005f); //far from enemy (being lame)
+        if (distanceToTarget > 20.0f) SetReward(-0.005f); //far from enemy (being lame)
 
     }
 
-    public void Victory() {
+    public void Victory()
+    {
         float ks = GetComponent<CharacterStats>().ks();
         SetReward(0.05f + ks * 0.05f); ;
         GetComponent<CharacterStats>().Won();
@@ -138,12 +154,17 @@ public class PlayerAgent : Agent
         Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1);
     }
 
-    public void Defeat() {
+    public void Defeat()
+    {
         SetReward(-0.5f);
+        int sc = GetStepCount();
+        Debug.Log("defeat: " + sc);
+        GetComponent<CharacterStats>().TotalSteps(-maxStep+sc); //-maxstep cause it driggers done, which adds maxstep
+
         Done();
     }
 
-
+    public void SetEnemy(Transform e) { enemy = e; }
 
     public override float[] Heuristic()
     {

@@ -6,7 +6,7 @@ using UnityEngine;
 // a script attached to every character object, defining it's status and status conditions such as slow or burn
 public class StatusController : MonoBehaviour
 {
-
+    public int teamID =0;
     //Stats, to be defined in the editor for each character or character prefab
     public int atk; //melee attack stat
     public int matk; //magical attack stat

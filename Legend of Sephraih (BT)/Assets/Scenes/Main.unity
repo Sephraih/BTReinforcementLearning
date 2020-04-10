@@ -194,6 +194,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!1001 &328508442
@@ -263,6 +268,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!1001 &341667345
@@ -331,6 +341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -418,6 +433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -645,6 +665,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!1001 &959066362
@@ -714,6 +739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!1001 &973955649
@@ -782,6 +812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -931,6 +966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!4 &1251263817 stripped
@@ -1006,6 +1046,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!1001 &1321303699
@@ -1075,6 +1120,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!1001 &1353601144
@@ -1143,6 +1193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -1218,6 +1273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -1297,6 +1357,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690914766739076592, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: record
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690914766739076592, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -1379,6 +1449,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!4 &1695176468 stripped
@@ -1453,6 +1528,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
@@ -1534,6 +1614,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750737120040176246, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}

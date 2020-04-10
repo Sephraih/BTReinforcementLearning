@@ -70,8 +70,19 @@ public class FireBolt : MonoBehaviour
     public void BlastVec(Vector2 dir)
     {
 
-        dir = dir + new Vector2(transform.position.x, transform.position.y); //move directionvectorcenter to character
+        dir += new Vector2(transform.position.x, transform.position.y); //move directionvectorcenter to character
         Vector2 difference = new Vector2(dir.x - transform.position.x, dir.y - transform.position.y); // vector from transform dir
+
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector
+        shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offset);
+        Bolt();
+
+    }
+
+    public void BlastTarget(Vector2 dir)
+    {
+
+        Vector2 difference = new Vector2(dir.x - transform.localPosition.x, dir.y - transform.localPosition.y); // vector from transform dir
 
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector
         shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offset);

@@ -37,7 +37,7 @@ public class HealthController : MonoBehaviour
         dmger.GetComponent<CharacterStats>().DmgDone(damage); //update stats
 
 
-        //GetComponent<PlayerAgent>().SetReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
+        GetComponent<PlayerAgent>().SetReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
         GetComponent<CharacterStats>().DmgTaken(damage); //update stats
 
         if (damage >= health)
