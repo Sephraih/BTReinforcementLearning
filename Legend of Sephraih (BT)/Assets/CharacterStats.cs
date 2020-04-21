@@ -8,12 +8,13 @@ public class CharacterStats : MonoBehaviour
     public float dmgDone = 0;
     public float dmgDoneTotal = 0;
     public float dmgTaken = 0;
-    
+
     public float lived = 0;
     public float victories = 0;
 
     public int totalSteps;
     public int currentSteps;
+
 
 
     // Update is called once per frame
@@ -37,8 +38,7 @@ public class CharacterStats : MonoBehaviour
     {
         float dps = dmgDone / s;
         print("Step: " + s + ": " + dps + " dps");
-        GetComponent<PlayerAgent>().SetReward(dps *0.01f);
-        
+        GetComponent<BasicAgent>().SetReward(dps * 0.01f);
     }
 
     public void Won()
@@ -59,12 +59,13 @@ public class CharacterStats : MonoBehaviour
         victories = 0;
     }
 
-    public void TotalSteps(int ts) {
+    public void TotalSteps(int ts)
+    {
         totalSteps += ts;
     }
 
     void OnApplicationQuit()
     {
-        Debug.Log("steps completed: " + totalSteps + " dps: " + dmgDoneTotal/totalSteps);
+        Debug.Log("steps completed: " + totalSteps + " dps: " + dmgDoneTotal / totalSteps);
     }
 }

@@ -92,7 +92,7 @@ public class PlayerOneController : MonoBehaviour
 
         if (_e)
         {
-            GetComponent<ChargeAttack>().charge(Camera.main.GetComponent<camerafollow>().ClosestEnemy(transform));
+            GetComponent<ChargeAttack>().Charge(Camera.main.GetComponent<camerafollow>().ClosestEnemy(transform));
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MLAgents;
 
 public class Statistics : MonoBehaviour
 {
@@ -26,4 +27,5 @@ public class Statistics : MonoBehaviour
     public void UpdateHks(float n) {
         hks = hks > n ? hks : n;
     }
+
 }

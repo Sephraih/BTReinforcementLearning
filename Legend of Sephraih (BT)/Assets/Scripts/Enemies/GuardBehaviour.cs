@@ -99,7 +99,7 @@ public class GuardBehaviour : MonoBehaviour
         }
         else if (distanceToTarget < guardRadius && distanceToGuardSpot <= guardMaxChaseRadius)
         {
-            this.GetComponent<ChargeAttack>().charge(player);
+            this.GetComponent<ChargeAttack>().Charge(player);
         }
 
         if (distanceToTarget > 5.0f && distanceToTarget < 10.0f)

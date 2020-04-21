@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArenaBehaviour : MonoBehaviour
 {
     public List<Transform> enemyList; // list of currently active enemies
-    public void ClosestEnemy(Transform self)
+    public Transform ClosestEnemy(Transform self, Transform ce)
     {
         int teamID = self.GetComponent<StatusController>().teamID;
 
@@ -22,9 +22,10 @@ public class ArenaBehaviour : MonoBehaviour
                     enemy = e;
                 }
             }
-            if(enemy.GetComponent<PlayerAgent>().teamID != teamID) { self.GetComponent<PlayerAgent>().SetEnemy(enemy); }
+            if(enemy.GetComponent<StatusController>().teamID != teamID) { return enemy; }
             
         }
+        return ce;
     }
     public void Register(Transform self)
     {

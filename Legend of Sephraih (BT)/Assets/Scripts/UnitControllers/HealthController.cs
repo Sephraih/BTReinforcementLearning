@@ -17,6 +17,7 @@ public class HealthController : MonoBehaviour
 
     public GameObject ht; // health text variable, this can be a heal or dmg text
 
+
     void Start()
     {
         Max(); // initialize character to start at max health
@@ -27,23 +28,22 @@ public class HealthController : MonoBehaviour
 
         dmgText = Resources.Load("Prefabs/DmgTextPrefab") as GameObject;
         healText = Resources.Load("Prefabs/HealTextPrefab") as GameObject;
+       
     }
 
     // take damage, display number and blood effect
     public void TakeDamage(int damage, Transform dmger)
     {
-
-        dmger.GetComponent<PlayerAgent>().SetReward(damage * rewardmodifier); //reward to attacker (dmger)
+        dmger.GetComponent<BasicAgent>().AddReward(damage * rewardmodifier); //reward to attacker (dmger)
         dmger.GetComponent<CharacterStats>().DmgDone(damage); //update stats
 
-
-        GetComponent<PlayerAgent>().SetReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
+        GetComponent<BasicAgent>().AddReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
         GetComponent<CharacterStats>().DmgTaken(damage); //update stats
 
         if (damage >= health)
         {
-            dmger.GetComponent<PlayerAgent>().Victory();
-            GetComponent<PlayerAgent>().Defeat();
+            dmger.GetComponent<BasicAgent>().Victory();
+            GetComponent<BasicAgent>().Defeat();
         }
 
 

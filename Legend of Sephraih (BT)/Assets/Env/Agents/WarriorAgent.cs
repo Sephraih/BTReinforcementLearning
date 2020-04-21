@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
-public class PlayerAgent : BasicAgent
+public class WarriorAgent : BasicAgent
 {
 
     //Skills
     private bool _a;
-    private bool _q;
-    private bool _w;
     private bool _e;
-    
+
+
     //observation Vector
     public override void CollectObservations()
     {
         enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform, enemy); //get closest enemy inside arena
-        //AddVectorObs(distanceToTarget);
         AddVectorObs(enemy.localPosition.x);
         AddVectorObs(enemy.localPosition.y);
         AddVectorObs(transform.localPosition.x);
@@ -25,8 +23,6 @@ public class PlayerAgent : BasicAgent
     //action Vector
     public override void AgentAction(float[] vectorAction)
     {
-
-
         distanceToTarget = Vector2.Distance(this.transform.position, enemy.position);
         if (GetStepCount() > 0 && GetStepCount() % 1000 == 0) GetComponent<CharacterStats>().DpSteps(GetStepCount());
 
@@ -35,25 +31,12 @@ public class PlayerAgent : BasicAgent
         movementAction.x = vectorAction[0];
         movementAction.y = vectorAction[1];
 
-        /*Vector2 attDir = Vector2.zero;
-        attDir.x = vectorAction[2];
-        attDir.y = vectorAction[3];*/
-
-
-        _q = vectorAction[2] >= 0.5f ? true : false;
-        if (_q)
-        {
-            //GetComponent<FireBolt>().BlastVec(new Vector2(attDir.x, attDir.y)); // -1 to 1 on both x y corresponding to vector added to user pos
-            //GetComponent<FireBolt>().BlastAngle(vectorAction[2]); //at angle -1 to 1 corresponding to -180 to 180
-            //GetComponent<FireBolt>().Blast(); //frontal blast
-            GetComponent<FireBolt>().BlastTarget(new Vector2(enemy.localPosition.x, enemy.localPosition.y));
-        }
-        _a = vectorAction[3] >= 0.5f ? true : false;
+        _a = vectorAction[2] >= 0.5f ? true : false;
         if (_a)
         {
             GetComponent<MultiSlash>().Attack();
         }
-        _e = vectorAction[4] >= 0.5f ? true : false;
+        _e = vectorAction[3] >= 0.5f ? true : false;
         if (_e)
         {
             GetComponent<ChargeAttack>().Charge(enemy);
@@ -69,19 +52,17 @@ public class PlayerAgent : BasicAgent
             attackingDirection.transform.localPosition = movementDirection * 0.5f;
         }
 
-        if (distanceToTarget > 20.0f) AddReward(-0.005f); //far from enemy (being lame)
+        if (distanceToTarget > 20.0f) SetReward(-0.005f); //far from enemy (being lame)
 
     }
-
 
     public override float[] Heuristic()
     {
         var action = new float[5];
         action[0] = Input.GetAxis("Horizontal");
         action[1] = Input.GetAxis("Vertical");
-        action[2] = Input.GetButtonUp("q") == true ? 1f : 0f;
-        action[3] = Input.GetButtonUp("a") == true ? 1f : 0f;
-        action[4] = Input.GetButtonUp("e") == true ? 1f : 0f;
+        action[2] = Input.GetButtonUp("a") == true ? 1f : 0f;
+        action[3] = Input.GetButtonUp("e") == true ? 1f : 0f;
 
         return action;
     }

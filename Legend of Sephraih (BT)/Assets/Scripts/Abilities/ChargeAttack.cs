@@ -9,6 +9,7 @@ public class ChargeAttack : MonoBehaviour
     public GameObject chargeEffect;
     public float stunTime = 1.0f;
     private float cd; //cool down remaining
+    public int dmg = 250;
     
     private Vector2 chargeDirection;
     private float distanceToTarget;
@@ -21,7 +22,7 @@ public class ChargeAttack : MonoBehaviour
     }
 
     //run at a target, damage based on character attack*3 and stun it for a short time
-    public void charge(Transform target)
+    public void Charge(Transform target)
     {
         if (cd <= 0f) // if ability ready to use
         {
@@ -72,7 +73,7 @@ public class ChargeAttack : MonoBehaviour
         target.GetComponent<MovementController>().Stun(stunTime);
         Camera.main.GetComponent<camerafollow>().CamShake();
         GetComponent<MovementController>().stuck = false;
-        target.GetComponent<HealthController>().TakeDamage(transform.GetComponent<StatusController>().atk * 3, transform);
+        target.GetComponent<HealthController>().TakeDamage(dmg, transform);
 
 
 
