@@ -52,7 +52,7 @@ public class WarriorAgent : BasicAgent
             attackingDirection.transform.localPosition = movementDirection * 0.5f;
         }
 
-        if (distanceToTarget > 20.0f) SetReward(-0.005f); //far from enemy (being lame)
+        if (distanceToTarget > 10.0f) SetReward(-0.005f); //far from enemy (being lame)
 
     }
 
