@@ -1515,6 +1515,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena
       objectReference: {fileID: 0}
+    - target: {fileID: 7785713444477592291, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578476443281022861, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1822bc7e6db51c94abff7f43b9695f4d, type: 3}
 --- !u!4 &1943092902 stripped

@@ -37,6 +37,9 @@ public class BasicAgent : Agent
         GetComponent<HealthController>().Max();
         GetComponent<CharacterStats>().Reset();
         GetComponent<CharacterStats>().TotalSteps(maxStep);
+        arena.GetComponent<ArenaBehaviour>().deathcount++;
+        int a = arena.GetComponent<ArenaBehaviour>().deathcount;
+        if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees();
     }
 
 
@@ -61,11 +64,41 @@ public class BasicAgent : Agent
 
     public void ResetPosition(Transform t)
     {
-        float v = Random.Range(-11.5f, 14.5f);
-        float h = Random.Range(-18.0f, 18.0f);
+        int a = Random.Range(1,5);
+        float h = 0;
+        float v = 0;
+
+        switch (a)
+        {
+            case 1:
+                v = Random.Range(-2f, 2f);
+                h = Random.Range(-25.0f, -21.0f);
+                break;
+            case 2:
+                v = Random.Range(-2f, 2f);
+                h = Random.Range(21.0f, 25.0f);
+                break;
+            case 3:
+                v = Random.Range(16f, 20f);
+                h = Random.Range(-3.0f, 3.0f);
+                break;
+            case 4:
+                v = Random.Range(-20f, -16f);
+                h = Random.Range(-3.0f, 3.0f);
+                break;
+            default:
+                break;
+        }
+
         Vector2 arenaPos = arena.transform.position;
         t.position = new Vector2(h, v) + arenaPos;
     }
 
     public void SetEnemy(Transform e) { enemy = e; }
 }
+
+
+/*
+            v = Random.Range(-11.5f, 14.5f);
+            h = Random.Range(-18.0f, 18.0f);
+*/

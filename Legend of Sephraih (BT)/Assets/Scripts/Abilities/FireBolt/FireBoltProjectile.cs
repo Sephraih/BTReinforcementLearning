@@ -34,20 +34,23 @@ public class FireBoltProjectile : MonoBehaviour
         foreach (Collider2D collider in overlapColliders)
         {
 
-            if (collider.transform != user && collider.isTrigger && collider.CompareTag("Player")) // all enemy colliders, each character has 2 colliders, only the trigger collider is used
+            if (collider.transform != user)
             {
-                if (collider.transform.GetComponent<StatusController>().teamID != teamID)
+                if (collider.isTrigger && collider.CompareTag("Player")) // all enemy colliders, each character has 2 colliders, only the trigger collider is used
                 {
-                    if (!damagedTargets.Contains(collider)) //before the bolt is destroyed, it checks for colliders on every frame, which might result in duplicate application, which is unwished for
+                    if (collider.transform.GetComponent<StatusController>().teamID != teamID)
                     {
-                        collider.GetComponent<HealthController>().TakeDamage(dmg, user); //apply damage to the character the collider belongs to
-                                                                                         //collider.GetComponent<StatusController>().Burn(dotd, dott, user); //burn the character
-                                                                                         //collider.GetComponent<StatusController>().Slow(slow, dott); //slow the character
-                        damagedTargets.Add(collider);
+                        if (!damagedTargets.Contains(collider)) //before the bolt is destroyed, it checks for colliders on every frame, which might result in duplicate application, which is unwished for
+                        {
+                            collider.GetComponent<HealthController>().TakeDamage(dmg, user); //apply damage to the character the collider belongs to
+                                                                                             //collider.GetComponent<StatusController>().Burn(dotd, dott, user); //burn the character
+                                                                                             //collider.GetComponent<StatusController>().Slow(slow, dott); //slow the character
+                            damagedTargets.Add(collider);
 
-                        DestroyProjectile(); // destroy on first hit, optional
+                            DestroyProjectile(); // destroy on first hit, optional
+                        }
                     }
-                }
+                } else DestroyProjectile();
             }
 
         }

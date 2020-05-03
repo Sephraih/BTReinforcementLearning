@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ArenaBehaviour : MonoBehaviour
+
+
 {
     public List<Transform> enemyList; // list of currently active enemies
+    public List<Transform> treeList;
+    public int deathcount =0;
+
     public Transform ClosestEnemy(Transform self, Transform ce)
     {
         int teamID = self.GetComponent<StatusController>().teamID;
@@ -16,14 +21,14 @@ public class ArenaBehaviour : MonoBehaviour
             Transform enemy = enemyList[0];
             foreach (Transform e in enemyList)
             {
-                if ( Vector2.Distance(self.position, e.position) < distance && e.GetComponent<StatusController>().teamID !=teamID)
+                if (Vector2.Distance(self.position, e.position) < distance && e.GetComponent<StatusController>().teamID != teamID)
                 {
                     distance = Vector2.Distance(self.position, e.position);
                     enemy = e;
                 }
             }
-            if(enemy.GetComponent<StatusController>().teamID != teamID) { return enemy; }
-            
+            if (enemy.GetComponent<StatusController>().teamID != teamID) { return enemy; }
+
         }
         return ce;
     }
@@ -34,5 +39,18 @@ public class ArenaBehaviour : MonoBehaviour
     public void Remove(Transform self)
     {
         enemyList.Remove(transform);
+    }
+
+    public void UpdateTrees()
+    {
+
+        foreach (Transform t in treeList)
+        {
+            float v = Random.Range(-11.5f, 14.5f);
+            float h = Random.Range(-18.0f, 18.0f);
+            Vector2 arenaPos = transform.transform.position;
+            t.position = new Vector2(h, v) + arenaPos;
+        }
+
     }
 }
