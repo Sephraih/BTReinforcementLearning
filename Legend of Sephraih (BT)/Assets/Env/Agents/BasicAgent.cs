@@ -24,8 +24,8 @@ public class BasicAgent : Agent
 
     void Start()
     {
-        targetHealth = enemy.GetComponent<HealthController>().MaxHealth;
-        agentHealth = GetComponent<HealthController>().MaxHealth;
+        targetHealth = enemy.GetComponent<HealthController>().maxHealth;
+        agentHealth = GetComponent<HealthController>().maxHealth;
         arena.GetComponent<ArenaBehaviour>().Register(transform);
         GetComponent<StatusController>().teamID = GetComponent<BehaviorParameters>().m_TeamID;
     }
@@ -39,7 +39,7 @@ public class BasicAgent : Agent
         GetComponent<CharacterStats>().TotalSteps(maxStep);
         arena.GetComponent<ArenaBehaviour>().deathcount++;
         int a = arena.GetComponent<ArenaBehaviour>().deathcount;
-        if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees();
+        if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees(); //trees randomized every 5th death
     }
 
 

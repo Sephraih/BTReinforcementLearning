@@ -23,7 +23,7 @@ public class SelfHeal : MonoBehaviour
     {
         if (cdtimer <= 0)
         {
-            GetComponent<HealthController>().Heal(GetComponent<StatusController>().matk); // magical attack from status
+            GetComponent<HealthController>().Heal(GetComponent<StatusController>().matk, transform); // magical attack from status
             cdtimer = cd;
             GameObject a = Instantiate(effect, transform.position, Quaternion.identity); // instantiate a heal effect
             a.transform.parent = transform; //so the particle system follows the character

@@ -9,6 +9,10 @@ public class CharacterStats : MonoBehaviour
     public float dmgDoneTotal = 0;
     public float dmgTaken = 0;
 
+    public float healDone = 0;
+    public float healDoneTotal = 0;
+
+
     public float lived = 0;
     public float victories = 0;
 
@@ -28,10 +32,16 @@ public class CharacterStats : MonoBehaviour
         dmgDone += d;
         dmgDoneTotal += d;
     }
-
+    
     public void DmgTaken(float d)
     {
         dmgTaken += d;
+    }
+
+    public void HealDone(float h)
+    {
+        healDone += h;
+        healDoneTotal += h;
     }
 
     public void DpSteps(int s)
@@ -55,6 +65,7 @@ public class CharacterStats : MonoBehaviour
     {
         dmgDone = 0;
         dmgTaken = 0;
+        healDone = 0;
         lived = 0;
         victories = 0;
     }

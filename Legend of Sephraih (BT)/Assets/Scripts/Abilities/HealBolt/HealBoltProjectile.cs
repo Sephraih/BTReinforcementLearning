@@ -33,7 +33,7 @@ public class HealBoltProjectile : MonoBehaviour
             if (hitInfo.collider.CompareTag(target) && hitInfo.collider.transform != user)
             {
                 Debug.Log(hitInfo.collider);
-                hitInfo.collider.GetComponent<HealthController>().Heal(heal);
+                hitInfo.collider.GetComponent<HealthController>().Heal(heal,user);
                 DestroyProjectile();
             }
 

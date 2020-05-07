@@ -65,7 +65,7 @@ public class DummyController : MonoBehaviour
     {
         if (this.GetComponent<HealthController>().health <= 0)
         {
-            this.GetComponent<HealthController>().Heal(GetComponent<HealthController>().MaxHealth);
+            this.GetComponent<HealthController>().Max();
             player.GetComponent<PlayerAgent>().SetReward(1.0f);
             player.GetComponent<PlayerAgent>().Done();
         }

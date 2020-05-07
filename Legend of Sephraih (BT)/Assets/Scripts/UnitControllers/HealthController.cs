@@ -6,7 +6,7 @@ public class HealthController : MonoBehaviour
 {
     //the script is attached to all character objects.
 
-    public int MaxHealth = 100; // maximal health the number here is default, overwritten in inspector
+    public int maxHealth = 100; // maximal health the number here is default, overwritten in inspector
     public int health = 100; // current health - default set to avoid errors
     private float rewardmodifier = 0.0001f; //for health and damage loss
     private GameObject dmgText; // a damage text prefab to be displayed when the character takes damage
@@ -28,7 +28,7 @@ public class HealthController : MonoBehaviour
 
         dmgText = Resources.Load("Prefabs/DmgTextPrefab") as GameObject;
         healText = Resources.Load("Prefabs/HealTextPrefab") as GameObject;
-       
+
     }
 
     // take damage, display number and blood effect
@@ -60,14 +60,28 @@ public class HealthController : MonoBehaviour
     }
 
     // recover damage, display number and recovery effect
-    public void Heal(int heal)
+    public void Heal(int heal, Transform healer)
     {
+
+        int toMax = maxHealth - health; // health missing
+        if (heal >= toMax) //clip reward if overhealed
+        {
+            healer.GetComponent<BasicAgent>().AddReward(toMax * rewardmodifier); //reward to attacker (dmger)
+            healer.GetComponent<CharacterStats>().HealDone(toMax); //update stats
+        }
+        else //heal less than health missing
+        {
+            healer.GetComponent<BasicAgent>().AddReward(heal * rewardmodifier);
+            healer.GetComponent<CharacterStats>().HealDone(heal); //update stats
+        }
+
+
         GameObject hef = Instantiate(healedEffect, transform.position, Quaternion.identity);
         hef.transform.parent = transform;
         Destroy(hef, 1.0f);
 
-        if (health < MaxHealth) { health += heal; }
-        if (health > MaxHealth) { health = MaxHealth; }
+        if (health < maxHealth) { health += heal; }
+        if (health > maxHealth) { health = maxHealth; }
         ShowHealText(heal);
     }
 
@@ -102,8 +116,8 @@ public class HealthController : MonoBehaviour
 
     public void Max()
     {
-        health = MaxHealth;
-        ShowHealText(MaxHealth);
+        health = maxHealth;
+        ShowHealText(maxHealth);
     }
 
 }

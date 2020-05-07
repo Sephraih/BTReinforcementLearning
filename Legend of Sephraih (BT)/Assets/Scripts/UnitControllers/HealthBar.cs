@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        fgi.fillAmount = 1.0f / ((float)hc.MaxHealth / (float)hc.health); // based on curent and maximal health, calculate the percentual amount from left to right of the image that is to be shown
+        fgi.fillAmount = 1.0f / ((float)hc.maxHealth / (float)hc.health); // based on curent and maximal health, calculate the percentual amount from left to right of the image that is to be shown
     }
 
 

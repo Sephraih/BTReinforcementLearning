@@ -6,20 +6,24 @@ public class ArenaBehaviour : MonoBehaviour
 
 
 {
-    public List<Transform> enemyList; // list of currently active enemies
+    public List<Transform> characterList; // list of currently active enemies
     public List<Transform> treeList;
     public int deathcount =0;
+    private void Start()
+    {
+        UpdateTrees();
+    }
 
     public Transform ClosestEnemy(Transform self, Transform ce)
     {
         int teamID = self.GetComponent<StatusController>().teamID;
 
-        if (enemyList.Count >= 2) //at least self and an enemy
+        if (characterList.Count >= 2) //at least self and another character
         {
 
             var distance = 10000f; //big number, if an enemy were further away, it'd be out of range.
-            Transform enemy = enemyList[0];
-            foreach (Transform e in enemyList)
+            Transform enemy = characterList[0];
+            foreach (Transform e in characterList)
             {
                 if (Vector2.Distance(self.position, e.position) < distance && e.GetComponent<StatusController>().teamID != teamID)
                 {
@@ -32,14 +36,39 @@ public class ArenaBehaviour : MonoBehaviour
         }
         return ce;
     }
+
+    public Transform ClosestAlly(Transform self, Transform ca)
+    {
+        int teamID = self.GetComponent<StatusController>().teamID;
+
+        if (characterList.Count >= 2) //at least self and and another character
+        {
+
+            var distance = 10000f; //big number, if an enemy were further away, it'd be out of range.
+            Transform ally = characterList[0];
+            foreach (Transform a in characterList)
+            {
+                if (Vector2.Distance(self.position, a.position) < distance && a.GetComponent<StatusController>().teamID == teamID && self != a)
+                {
+                    distance = Vector2.Distance(self.position, a.position);
+                    ally = a;
+                }
+            }
+            if (ally.GetComponent<StatusController>().teamID == teamID && self !=ally) { return ally; }
+
+        }
+        return ca;
+    }
+
     public void Register(Transform self)
     {
-        enemyList.Add(self);
+        characterList.Add(self);
     }
     public void Remove(Transform self)
     {
-        enemyList.Remove(transform);
+        characterList.Remove(transform);
     }
+
 
     public void UpdateTrees()
     {
