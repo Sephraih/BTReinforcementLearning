@@ -9576,15 +9576,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203588d31bb419341b8927d17cb80a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: Player
   user: {fileID: 0}
-  speed: 20
-  lifetime: 1
-  distance: 0.5
-  heal: 50
-  dotd: 0
-  dott: 0
-  slow: 0
+  teamID: 0
+  speed: 15
+  lifetime: 0.5
+  rayDistance: 0.5
+  heal: 0
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512

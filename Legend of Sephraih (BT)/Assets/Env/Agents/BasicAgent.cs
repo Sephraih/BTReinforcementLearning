@@ -39,7 +39,7 @@ public class BasicAgent : Agent
         GetComponent<CharacterStats>().TotalSteps(maxStep);
         arena.GetComponent<ArenaBehaviour>().deathcount++;
         int a = arena.GetComponent<ArenaBehaviour>().deathcount;
-        if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees(); //trees randomized every 5th death
+       // if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees(); //trees randomized every 5th death
     }
 
 
@@ -64,10 +64,12 @@ public class BasicAgent : Agent
 
     public void ResetPosition(Transform t)
     {
-        int a = Random.Range(1,5);
         float h = 0;
         float v = 0;
-
+        /* // to spawn inside 4 spawn areas
+        int a = Random.Range(1,5);
+        
+        
         switch (a)
         {
             case 1:
@@ -89,6 +91,10 @@ public class BasicAgent : Agent
             default:
                 break;
         }
+        */
+        v = Random.Range(-11.5f, 14.5f);
+        h = Random.Range(-18.0f, 18.0f);
+
 
         Vector2 arenaPos = arena.transform.position;
         t.position = new Vector2(h, v) + arenaPos;
@@ -98,7 +104,3 @@ public class BasicAgent : Agent
 }
 
 
-/*
-            v = Random.Range(-11.5f, 14.5f);
-            h = Random.Range(-18.0f, 18.0f);
-*/

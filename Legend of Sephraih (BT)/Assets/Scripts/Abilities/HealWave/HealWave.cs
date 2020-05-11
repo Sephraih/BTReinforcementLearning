@@ -16,6 +16,8 @@ public class HealWave : MonoBehaviour
     private float cd;
     public float startcd;
 
+    public int healAmount;
+
     private void Update()
     {
         cd -= Time.deltaTime;
@@ -31,8 +33,7 @@ public class HealWave : MonoBehaviour
         Wave();
 
     }
-
-
+    
 
     //same use as blast but shooting towards mouse position
     public void BlastMouse()
@@ -46,6 +47,17 @@ public class HealWave : MonoBehaviour
         Wave();
     }
 
+    public void BlastTarget(Vector2 dir)
+    {
+
+        Vector2 difference = new Vector2(dir.x - transform.localPosition.x, dir.y - transform.localPosition.y); // vector from transform dir
+
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector
+        shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offset);
+        Wave();
+
+    }
+
     public void Wave()
     {
 
@@ -54,9 +66,7 @@ public class HealWave : MonoBehaviour
         {
 
             var bolt = Instantiate(projectile, transform.position, shotPoint.transform.rotation);
-            bolt.GetComponent<HealWaveProjectile>().friendly = friendly;
-            bolt.GetComponent<HealWaveProjectile>().hostile = hostile;
-            bolt.GetComponent<HealWaveProjectile>().heal += this.GetComponent<StatusController>().matk;
+            bolt.GetComponent<HealWaveProjectile>().healAmount = healAmount; //this.GetComponent<StatusController>().matk;
             bolt.GetComponent<HealWaveProjectile>().user = transform;
 
             cd = startcd;

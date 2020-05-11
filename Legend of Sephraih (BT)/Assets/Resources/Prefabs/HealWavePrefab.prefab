@@ -4789,13 +4789,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36637663697cd3949a8f1f722dd79e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendly: Player
-  hostile: Enemy
   user: {fileID: 0}
-  target: {fileID: 0}
+  teamID: 0
   destroyEffect: {fileID: 5802651140264993763, guid: fdb6ef943056669448a4d958f58b46e6,
     type: 3}
-  speed: 15
+  speed: 10
   lifetime: 1
-  heal: 20
-  slow: 10
+  healAmount: 0

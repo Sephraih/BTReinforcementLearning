@@ -11,7 +11,7 @@ public class ArenaBehaviour : MonoBehaviour
     public int deathcount =0;
     private void Start()
     {
-        UpdateTrees();
+       // UpdateTrees(); //randomize at start
     }
 
     public Transform ClosestEnemy(Transform self, Transform ce)

@@ -6,11 +6,12 @@ using UnityEngine;
 public class HealBolt : MonoBehaviour
 {
     private float offset = -90.0f;
-    public string target = "Player";
     
 
     public GameObject projectile;
     public Transform shotPoint;
+
+    public int healAmount =100;
 
     private float cd;
     public float startcd;
@@ -43,6 +44,16 @@ public class HealBolt : MonoBehaviour
         Bolt();
 
     }
+    public void BlastTarget(Vector2 dir)
+    {
+
+        Vector2 difference = new Vector2(dir.x - transform.localPosition.x, dir.y - transform.localPosition.y); // vector from transform dir
+
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector
+        shotPoint.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - offset);
+        Bolt();
+
+    }
 
     public void Bolt() {
 
@@ -51,8 +62,7 @@ public class HealBolt : MonoBehaviour
         {
             //instantiate projectile and assign values
             var bolt = Instantiate(projectile, transform.position, shotPoint.transform.rotation);
-            bolt.GetComponent<HealBoltProjectile>().target = target;
-            bolt.GetComponent<HealBoltProjectile>().heal += this.GetComponent<StatusController>().matk;
+            bolt.GetComponent<HealBoltProjectile>().heal = healAmount; //this.GetComponent<StatusController>().matk;
             bolt.GetComponent<HealBoltProjectile>().user = transform;
 
             cd = startcd;

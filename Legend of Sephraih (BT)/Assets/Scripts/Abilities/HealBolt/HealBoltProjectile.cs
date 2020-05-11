@@ -5,16 +5,13 @@ using UnityEngine;
 // projectile launched by heal wave ability, see fire bolt projectile for documentation, heals instead of damaging
 public class HealBoltProjectile : MonoBehaviour
 {
-    public string target = "Player";
     public Transform user;
+    public int teamID;
 
     public float speed;
     public float lifetime;
-    public float distance;
+    public float rayDistance;
     public int heal;
-    public int dotd;
-    public int dott;
-    public float slow;
 
     public LayerMask whatIsEnemy;
 
@@ -22,15 +19,16 @@ public class HealBoltProjectile : MonoBehaviour
 
     private void Start()
     {
+        teamID = user.GetComponent<StatusController>().teamID;
         Invoke("DestroyProjectile", lifetime);
     }
     private void FixedUpdate()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, rayDistance);
 
         if (hitInfo.collider != null)
         {
-            if (hitInfo.collider.CompareTag(target) && hitInfo.collider.transform != user)
+            if (hitInfo.collider.CompareTag("Player") && hitInfo.collider.transform != user && hitInfo.collider.transform.GetComponent<StatusController>().teamID != teamID)
             {
                 Debug.Log(hitInfo.collider);
                 hitInfo.collider.GetComponent<HealthController>().Heal(heal,user);

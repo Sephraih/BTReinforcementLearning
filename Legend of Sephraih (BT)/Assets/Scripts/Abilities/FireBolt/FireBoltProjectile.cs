@@ -50,7 +50,8 @@ public class FireBoltProjectile : MonoBehaviour
                             DestroyProjectile(); // destroy on first hit, optional
                         }
                     }
-                } else DestroyProjectile();
+                }
+                else DestroyProjectile();
             }
 
         }
