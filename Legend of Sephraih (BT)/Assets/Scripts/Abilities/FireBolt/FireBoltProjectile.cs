@@ -29,7 +29,7 @@ public class FireBoltProjectile : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Collider2D[] overlapColliders = Physics2D.OverlapCircleAll(transform.position, 1.0f); //a circle located at the projectile's position scanning for any colliders overlapped and adding them to a list
+        Collider2D[] overlapColliders = Physics2D.OverlapCircleAll(transform.position, 0.3f); //a circle located at the projectile's position scanning for any colliders overlapped and adding them to a list
 
         foreach (Collider2D collider in overlapColliders)
         {

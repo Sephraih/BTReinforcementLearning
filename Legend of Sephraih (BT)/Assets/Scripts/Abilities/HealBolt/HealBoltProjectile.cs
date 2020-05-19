@@ -28,7 +28,7 @@ public class HealBoltProjectile : MonoBehaviour
 
         if (hitInfo.collider != null)
         {
-            if (hitInfo.collider.CompareTag("Player") && hitInfo.collider.transform != user && hitInfo.collider.transform.GetComponent<StatusController>().teamID != teamID)
+            if (hitInfo.collider.CompareTag("Player") && hitInfo.collider.transform != user && hitInfo.collider.transform.GetComponent<StatusController>().teamID == teamID)
             {
                 Debug.Log(hitInfo.collider);
                 hitInfo.collider.GetComponent<HealthController>().Heal(heal,user);

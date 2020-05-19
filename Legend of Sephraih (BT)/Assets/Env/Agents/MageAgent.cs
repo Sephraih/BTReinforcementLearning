@@ -62,11 +62,11 @@ public class MageAgent : BasicAgent
 
     public override float[] Heuristic()
     {
-        var action = new float[5];
+        var action = new float[4];
         action[0] = Input.GetAxis("Horizontal");
         action[1] = Input.GetAxis("Vertical");
-        action[2] = Input.GetButtonUp("q") == true ? 1f : 0f;
-        action[3] = Input.GetButtonUp("e") == true ? 1f : 0f;
+        action[2] = Input.GetButtonDown("q") == true ? 1f : 0f;
+        action[3] = Input.GetButtonDown("e") == true ? 1f : 0f;
 
         return action;
     }

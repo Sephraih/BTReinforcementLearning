@@ -10140,7 +10140,7 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 4
     numStackedVectorObservations: 5
-    vectorActionSize: 05000000
+    vectorActionSize: 06000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 5022602860645237092, guid: de2baab60b0aa7c469088fe23fa871e6, type: 3}
@@ -10354,7 +10354,7 @@ MonoBehaviour:
   projectile: {fileID: 377115153599935253, guid: 937abaceb1382274482cceaa3e075edf,
     type: 3}
   shotPoint: {fileID: 2786821105962528903}
-  healAmount: 100
+  healAmount: 200
   startcd: 2
 --- !u!114 &6904519294093984207
 MonoBehaviour:
@@ -15998,7 +15998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5090226222204044846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -5, z: 0}
+  m_LocalPosition: {x: -5, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1701956431260879988}
@@ -22599,7 +22599,7 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 4
     numStackedVectorObservations: 5
-    vectorActionSize: 05000000
+    vectorActionSize: 06000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 5022602860645237092, guid: de2baab60b0aa7c469088fe23fa871e6, type: 3}
@@ -22813,7 +22813,7 @@ MonoBehaviour:
   projectile: {fileID: 377115153599935253, guid: 937abaceb1382274482cceaa3e075edf,
     type: 3}
   shotPoint: {fileID: 1570483316537903989}
-  healAmount: 100
+  healAmount: 200
   startcd: 2
 --- !u!114 &418113520637530192
 MonoBehaviour:

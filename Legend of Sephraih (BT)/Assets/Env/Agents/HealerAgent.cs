@@ -56,9 +56,14 @@ public class HealerAgent : BasicAgent
         {
             GetComponent<SelfHeal>().Heal();
         }
-       
+        _q = vectorAction[5] >= 0.5f ? true : false;
+        if (_q)
+        {
+            GetComponent<HealBolt>().BlastTarget(new Vector2(target.localPosition.x, target.localPosition.y));
+        }
 
-        movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
+
+            movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
         movementDirection.Normalize();
         msi = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         GetComponent<MovementController>().Move(movementDirection, msi);
@@ -75,12 +80,13 @@ public class HealerAgent : BasicAgent
 
     public override float[] Heuristic()
     {
-        var action = new float[5];
+        var action = new float[6];
         action[0] = Input.GetAxis("Horizontal");
         action[1] = Input.GetAxis("Vertical");
         action[2] = Input.GetButtonUp("t") == true ? 1f : 0f;
-        action[3] = Input.GetButtonUp("e") == true ? 1f : 0f;
+        action[3] = Input.GetButtonUp("w") == true ? 1f : 0f;
         action[4] = Input.GetButtonUp("a") == true ? 1f : 0f;
+        action[5] = Input.GetButtonUp("q") == true ? 1f : 0f;
         return action;
     }
 }
