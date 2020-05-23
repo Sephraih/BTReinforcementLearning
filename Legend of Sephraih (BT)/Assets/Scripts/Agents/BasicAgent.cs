@@ -34,39 +34,39 @@ public class BasicAgent : Agent
     {
         //currentsteps at this point is zero, triggered at max steps or when Done();
         ResetPosition(transform);
-        GetComponent<HealthController>().Max();
-        GetComponent<CharacterStats>().Reset();
-        GetComponent<CharacterStats>().TotalSteps(maxStep);
-        arena.GetComponent<ArenaBehaviour>().deathcount++;
-        int a = arena.GetComponent<ArenaBehaviour>().deathcount;
+        GetComponent<HealthController>().Max(); //reset to max health
+        GetComponent<CharacterStats>().Reset(); //reset statistical values
+        GetComponent<CharacterStats>().TotalSteps(maxStep); //Total steps over all reset periods
+       // arena.GetComponent<ArenaBehaviour>().deathcount++; //the death count is used to randomize trees
+       // int a = arena.GetComponent<ArenaBehaviour>().deathcount;
        // if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees(); //trees randomized every 5th death
     }
 
-
+    //called by an enemy's HealthController when it dies through damage caused by agent this script is attached to
     public void Victory()
     {
-        float ks = GetComponent<CharacterStats>().ks();
-        AddReward(0.05f + ks * 0.05f); ;
-        GetComponent<CharacterStats>().Won();
+        float ks = GetComponent<CharacterStats>().ks(); //statistics: update killing spree
+        AddReward(0.05f + ks * 0.05f); ; //add rewardfor victory, increased based on killing spree of the agent
+        GetComponent<CharacterStats>().Won(); //statistics: update victory count
         print("ks= " + (ks + 1));
-        Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1);
+        Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1); //highest killing spree of all agents withing a training or gameplay
     }
 
+    //called by the agents HealthController when it dies
     public void Defeat()
     {
         AddReward(-0.5f);
         int sc = GetStepCount();
-        Debug.Log("defeat: " + sc);
-        GetComponent<CharacterStats>().TotalSteps(-maxStep + sc); //-maxstep cause it driggers done, which adds maxstep
+        GetComponent<CharacterStats>().TotalSteps(-maxStep + sc); //-maxstep because the method triggers done, which adds maxstep already
 
-        Done();
+        Done(); //reset the agent
     }
 
     public void ResetPosition(Transform t)
     {
         float h = 0;
         float v = 0;
-        /* // to spawn inside 4 spawn areas
+        /* // to cause the agent to spawn inside 4 spawn areas
         int a = Random.Range(1,5);
         
         
@@ -97,10 +97,10 @@ public class BasicAgent : Agent
 
 
         Vector2 arenaPos = arena.transform.position;
-        t.position = new Vector2(h, v) + arenaPos;
+        t.position = new Vector2(h, v) + arenaPos; //set the agent's spawn to be relative to the arena (could use localposition instead)
     }
 
-    public void SetEnemy(Transform e) { enemy = e; }
+    public void SetEnemy(Transform e) { enemy = e; } //a currently unused way to set the agents enemy target to a specific character
 }
 
 

@@ -15,6 +15,7 @@ public class MageAgent : BasicAgent
     public override void CollectObservations()
     {
         enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform,enemy); //get closest enemy inside arena
+        //observe arena-relative position of the enemy and this agent
         AddVectorObs(enemy.localPosition.x);
         AddVectorObs(enemy.localPosition.y);
         AddVectorObs(transform.localPosition.x);
@@ -22,22 +23,23 @@ public class MageAgent : BasicAgent
     }
 
     //action Vector
-    public override void AgentAction(float[] vectorAction)
+    public override void AgentAction(float[] vectorAction) //action vector size defined in the unity inspector
     {
 
 
-        distanceToTarget = Vector2.Distance(this.transform.position, enemy.position);
-        if (GetStepCount() > 0 && GetStepCount() % 1000 == 0) GetComponent<CharacterStats>().DpSteps(GetStepCount());
+        distanceToTarget = Vector2.Distance(this.transform.position, enemy.position); //required to set negative rewards based on distance
+        if (GetStepCount() > 0 && GetStepCount() % 1000 == 0) GetComponent<CharacterStats>().DpSteps(GetStepCount()); //update damage per one thousand steps
 
         // Actions -> unity documentation: By default the output from our provided PPO algorithm pre-clamps the values of vectorAction into the [-1, 1]
         Vector2 movementAction = Vector2.zero;
         movementAction.x = vectorAction[0];
         movementAction.y = vectorAction[1];
-        
+
+        //boolean triggers to enable the agents use abilities based on its policy
         _q = vectorAction[2] >= 0.5f ? true : false;
         if (_q)
         {
-            GetComponent<FireBolt>().BlastTarget(new Vector2(enemy.localPosition.x, enemy.localPosition.y));
+            GetComponent<FireBolt>().BlastTarget(enemy);
         }
         _e = vectorAction[3] >= 0.5f ? true : false;
         if (_e)
@@ -45,11 +47,13 @@ public class MageAgent : BasicAgent
             GetComponent<Teleport>().Backjump();
         }
 
+        //normalize and apply the movement the agent's policy decides for the character it is in control of
         movementDirection = new Vector2(movementAction.x * 100, movementAction.y * 100);
         movementDirection.Normalize();
         msi = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         GetComponent<MovementController>().Move(movementDirection, msi);
 
+        //let its attack direction transform face the way of the agent's last movement (don't let it reset if the agent stand still)
         if (movementDirection != Vector2.zero)
         {
             attackingDirection.transform.localPosition = movementDirection * 0.5f;
@@ -60,6 +64,7 @@ public class MageAgent : BasicAgent
     }
 
 
+    // heuristic function used to let the player controll the agent through the agent script
     public override float[] Heuristic()
     {
         var action = new float[4];

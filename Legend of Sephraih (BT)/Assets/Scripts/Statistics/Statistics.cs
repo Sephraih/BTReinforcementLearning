@@ -6,25 +6,18 @@ using MLAgents;
 public class Statistics : MonoBehaviour
 {
 
-    public float time;
-    public float hks=0; //highest killing spree achieved during game by agent
+    public float hks = 0; //highest killing spree achieved during game by agent
 
 
     // Start is called before the first frame update
     void Start()
     {
-        time = 0;
         hks = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    //agents call this when they achieve a kill
+    public void UpdateHks(float n)
     {
-        time += Time.deltaTime;
-
-    }
-
-    public void UpdateHks(float n) {
         hks = hks > n ? hks : n;
     }
 

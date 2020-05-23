@@ -5,20 +5,18 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
 
-    public float dmgDone = 0;
-    public float dmgDoneTotal = 0;
-    public float dmgTaken = 0;
+    public float dmgDone = 0; //damage done per reset
+    public float dmgDoneTotal = 0; //damage done over all resets
+    public float dmgTaken = 0; //damage taken per reset
 
-    public float healDone = 0;
-    public float healDoneTotal = 0;
+    public float healDone = 0; //heal done per reset
+    public float healDoneTotal = 0; //total healing over all resets
 
 
-    public float lived = 0;
-    public float victories = 0;
+    public float lived = 0; //time lived per reset
+    public float victories = 0; //victories achieved per reset
 
-    public int totalSteps;
-    public int currentSteps;
-
+    public int totalSteps; //total steps done over all resets
 
 
     // Update is called once per frame
@@ -32,7 +30,7 @@ public class CharacterStats : MonoBehaviour
         dmgDone += d;
         dmgDoneTotal += d;
     }
-    
+
     public void DmgTaken(float d)
     {
         dmgTaken += d;
@@ -61,6 +59,7 @@ public class CharacterStats : MonoBehaviour
         return victories;
     }
 
+    //reset statistics that are per reset period
     public void Reset()
     {
         dmgDone = 0;
@@ -75,6 +74,7 @@ public class CharacterStats : MonoBehaviour
         totalSteps += ts;
     }
 
+    //called upon ending the game or training
     void OnApplicationQuit()
     {
         Debug.Log("steps completed: " + totalSteps + " dps: " + dmgDoneTotal / totalSteps);

@@ -24,6 +24,7 @@ public class HealWave : MonoBehaviour
 
     }
 
+    //used to fire the projectile in the way the character is facing
     public void Blast()
     {
         Vector2 difference = transform.position - shotPoint.transform.position;
@@ -47,9 +48,11 @@ public class HealWave : MonoBehaviour
         Wave();
     }
 
-    public void BlastTarget(Vector2 dir)
+    //same as blaset but at a specified character target
+    public void BlastTarget(Transform target)
     {
 
+        Vector2 dir = new Vector2(target.localPosition.x, target.localPosition.y);
         Vector2 difference = new Vector2(dir.x - transform.localPosition.x, dir.y - transform.localPosition.y); // vector from transform dir
 
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 180; //rotate projectile onto vector

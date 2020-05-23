@@ -24,6 +24,7 @@ public class DummyController : MonoBehaviour
 
     void Update()
     {
+        // the dummy only has to reset upon death
       //  Move();
       // Aim();
       //  Attack();
