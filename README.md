@@ -23,3 +23,5 @@ Healer:
 
 Various agents can be dis- and enabled by toggling the checkbox at the top of their gameobject, by clicking on it in the unity editor.
 It is recommended to toggle them via the arena prefab found in the env folder.
+
+The short movie can alternatively be found with english subtitles on: https://www.youtube.com/watch?v=3PAeLEF0PYQ
