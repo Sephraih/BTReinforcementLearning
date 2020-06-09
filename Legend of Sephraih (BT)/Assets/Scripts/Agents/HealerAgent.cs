@@ -80,7 +80,8 @@ public class HealerAgent : BasicAgent
         if (distanceToTarget > 20.0f) SetReward(-0.005f); //far from enemy (being lame)
     }
 
-    // heuristic function used to let the player controll the agent through the agent script
+    /*
+    // heuristic function used to let the player controll the agent through the agent script - used for debugging, controlled through player script otherwise
     public override float[] Heuristic()
     {
         var action = new float[6];
@@ -91,5 +92,5 @@ public class HealerAgent : BasicAgent
         action[4] = Input.GetButtonUp("a") == true ? 1f : 0f;
         action[5] = Input.GetButtonUp("q") == true ? 1f : 0f;
         return action;
-    }
+    }*/
 }

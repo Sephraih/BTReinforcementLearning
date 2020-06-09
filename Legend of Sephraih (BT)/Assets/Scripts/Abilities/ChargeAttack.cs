@@ -71,7 +71,7 @@ public class ChargeAttack : MonoBehaviour
         }
         //after charging
         target.GetComponent<MovementController>().Stun(stunTime);
-        Camera.main.GetComponent<camerafollow>().CamShake();
+        Camera.main.GetComponent<NeutralCam>().CamShake();
         GetComponent<MovementController>().stuck = false;
         target.GetComponent<HealthController>().TakeDamage(dmg, transform);
 

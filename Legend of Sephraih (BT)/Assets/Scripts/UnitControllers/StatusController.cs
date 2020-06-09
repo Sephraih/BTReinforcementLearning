@@ -24,6 +24,7 @@ public class StatusController : MonoBehaviour
     //Status Effects
     public GameObject burnEffect; // prefab of a burning effect, displayed when suffering from the burning status condition
 
+    public bool playerControlled = false;
 
     public void Start()
     {

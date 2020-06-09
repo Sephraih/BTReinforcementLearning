@@ -34,16 +34,25 @@ public class HealthController : MonoBehaviour
     // take damage, display number and blood effect
     public void TakeDamage(int damage, Transform dmger)
     {
-        dmger.GetComponent<BasicAgent>().AddReward(damage * rewardmodifier); //reward to attacker (dmger)
-        dmger.GetComponent<CharacterStats>().DmgDone(damage); //update stats
+        bool dmgerIsPlayer = dmger.GetComponent<StatusController>().playerControlled;
+        bool transformIsPlayer = GetComponent<StatusController>().playerControlled;
 
-        GetComponent<BasicAgent>().AddReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
-        GetComponent<CharacterStats>().DmgTaken(damage); //update stats
+        if (!dmgerIsPlayer)
+        {
+            dmger.GetComponent<BasicAgent>().AddReward(damage * rewardmodifier); //reward to attacker (dmger)
+            dmger.GetComponent<CharacterStats>().DmgDone(damage); //update stats
+        }
+
+        if (!transformIsPlayer)
+        {
+            GetComponent<BasicAgent>().AddReward(damage * -rewardmodifier); //reward to attacked character (dmgd)
+            GetComponent<CharacterStats>().DmgTaken(damage); //update stats
+        }
 
         if (damage >= health)
         {
-            dmger.GetComponent<BasicAgent>().Victory();
-            GetComponent<BasicAgent>().Defeat();
+            if (!dmgerIsPlayer) dmger.GetComponent<BasicAgent>().Victory();
+            if (!transformIsPlayer) GetComponent<BasicAgent>().Defeat();
         }
 
 
@@ -63,18 +72,22 @@ public class HealthController : MonoBehaviour
     public void Heal(int heal, Transform healer)
     {
 
-        int toMax = maxHealth - health; // health missing
-        if (heal >= toMax) //clip reward if overhealed
+        bool healerIsPlayer = healer.GetComponent<StatusController>().playerControlled;
+        
+        if (!healerIsPlayer)
         {
-            healer.GetComponent<BasicAgent>().AddReward(toMax * rewardmodifier); //reward to attacker (dmger)
-            healer.GetComponent<CharacterStats>().HealDone(toMax); //update stats
+            int toMax = maxHealth - health; // health missing
+            if (heal >= toMax) //clip reward if overhealed
+            {
+                healer.GetComponent<BasicAgent>().AddReward(toMax * rewardmodifier); //reward to attacker (dmger)
+                healer.GetComponent<CharacterStats>().HealDone(toMax); //update stats
+            }
+            else //heal less than health missing
+            {
+                healer.GetComponent<BasicAgent>().AddReward(heal * rewardmodifier);
+                healer.GetComponent<CharacterStats>().HealDone(heal); //update stats
+            }
         }
-        else //heal less than health missing
-        {
-            healer.GetComponent<BasicAgent>().AddReward(heal * rewardmodifier);
-            healer.GetComponent<CharacterStats>().HealDone(heal); //update stats
-        }
-
 
         GameObject hef = Instantiate(healedEffect, transform.position, Quaternion.identity);
         hef.transform.parent = transform;
@@ -121,4 +134,3 @@ public class HealthController : MonoBehaviour
     }
 
 }
-

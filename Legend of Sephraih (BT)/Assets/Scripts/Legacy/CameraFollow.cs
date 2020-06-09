@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camerafollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
 
     public Transform target; // target the camera looks at 

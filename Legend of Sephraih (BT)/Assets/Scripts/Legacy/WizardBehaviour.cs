@@ -16,9 +16,9 @@ public class WizardBehaviour : MonoBehaviour
 
     void Start()
     {
-        target = Camera.main.GetComponent<camerafollow>().target; // initial target
+        target = Camera.main.GetComponent<CameraFollow>().target; // initial target
         GetComponent<FireBolt>().startcd = 1.0f; // initial cooldown of firebolt ability
-        Camera.main.GetComponent<camerafollow>().enemylist.Add(transform); // add to list of enemies
+        Camera.main.GetComponent<CameraFollow>().enemylist.Add(transform); // add to list of enemies
         GetComponent<StatusController>().matk = 100; // set the wizard's default magical attack strenght value to 100
 
 
@@ -36,7 +36,7 @@ public class WizardBehaviour : MonoBehaviour
     void Move()
     {
 
-        target = Camera.main.GetComponent<camerafollow>().ClosestPlayer(transform); // target is the closest player
+        target = Camera.main.GetComponent<CameraFollow>().ClosestPlayer(transform); // target is the closest player
         distanceToTarget = Vector2.Distance(transform.position, target.position); // distance to the player
 
 
@@ -87,7 +87,7 @@ public class WizardBehaviour : MonoBehaviour
         if (this.GetComponent<HealthController>().health <= 0)
         {
             //Instantiate((Resources.Load("Prefabs/Wizard") as GameObject), new Vector3(0, 0, 0), Quaternion.identity);
-            Camera.main.GetComponent<camerafollow>().enemylist.Remove(transform);
+            Camera.main.GetComponent<CameraFollow>().enemylist.Remove(transform);
             Destroy(gameObject);
         }
     }

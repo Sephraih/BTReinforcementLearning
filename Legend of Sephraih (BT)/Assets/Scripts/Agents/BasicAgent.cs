@@ -20,6 +20,7 @@ public class BasicAgent : Agent
     public int teamID;
 
 
+
     public GameObject attackingDirection; // object used to calculate a vector of attack
 
     void Start()
@@ -52,7 +53,7 @@ public class BasicAgent : Agent
         Camera.main.GetComponent<Statistics>().UpdateHks(ks + 1); //highest killing spree of all agents withing a training or gameplay
     }
 
-    //called by the agents HealthController when it dies
+    //called by the agents HealthController when the agent dies
     public void Defeat()
     {
         AddReward(-0.5f);
@@ -102,5 +103,3 @@ public class BasicAgent : Agent
 
     public void SetEnemy(Transform e) { enemy = e; } //a currently unused way to set the agents enemy target to a specific character
 }
-
-

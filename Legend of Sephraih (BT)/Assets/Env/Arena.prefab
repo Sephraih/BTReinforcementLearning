@@ -9946,18 +9946,15 @@ GameObject:
   - component: {fileID: 4665324379052803367}
   - component: {fileID: 3268992673238809673}
   - component: {fileID: 122940521671764076}
+  - component: {fileID: 3278817959938123405}
   - component: {fileID: 2076182441443173200}
   - component: {fileID: 5215021706519189101}
   - component: {fileID: 426741112258637833}
-  - component: {fileID: 7242698494527860075}
-  - component: {fileID: 2353571916395861588}
   - component: {fileID: 6034106636840347309}
-  - component: {fileID: 5619951076764304039}
-  - component: {fileID: 4159386259641255184}
-  - component: {fileID: 3278817959938123405}
   - component: {fileID: 121727000763480506}
   - component: {fileID: 6904519294093984207}
   - component: {fileID: 7434660213625293828}
+  - component: {fileID: 7890893469628931418}
   m_Layer: 9
   m_Name: Healer Red
   m_TagString: Player
@@ -9980,7 +9977,7 @@ Transform:
   - {fileID: 3812197797086493384}
   - {fileID: 7437207033344802415}
   m_Father: {fileID: 5750737120040176245}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4320049396823393424
 SpriteRenderer:
@@ -10164,6 +10161,34 @@ MonoBehaviour:
   DecisionPeriod: 10
   RepeatAction: 1
   offsetStep: 0
+--- !u!114 &3278817959938123405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470027857138062379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc530b3ccafa1464594236799fff3f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  maxStep: 20000
+  enemy: {fileID: 8426608968268918097}
+  distanceToTarget: 0
+  targetHealth: 0
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  agentHealth: 0
+  posResetRndScale: 14
+  arena: {fileID: 5750737120040176246}
+  teamID: 1
+  attackingDirection: {fileID: 3769623220848328975}
+  ally: {fileID: 2683242361649957384}
+  target: {fileID: 2683242361649957384}
 --- !u!114 &2076182441443173200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10216,42 +10241,7 @@ MonoBehaviour:
   crit: 0
   burnEffect: {fileID: 5987478075576669587, guid: b3cf8b2afe9be424a871a64504cd751b,
     type: 3}
---- !u!114 &7242698494527860075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470027857138062379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a73e773366f5a4c95a99692ac33d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basedmg: 100
-  startDelay: 0.5
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 512
---- !u!114 &2353571916395861588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470027857138062379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e82ab83fa701c498069fa7b8e974a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 1150724258750520066, guid: 818c5605413b00641b517b1f127b8ce0,
-    type: 3}
-  shotPoint: {fileID: 2786821105962528903}
-  user: {fileID: 1752192010619808235}
-  startcd: 0.5
-  dmg: 50
-  slow: 0.3
+  playerControlled: 0
 --- !u!114 &6034106636840347309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10272,73 +10262,6 @@ MonoBehaviour:
   lived: 0
   victories: 0
   totalSteps: 0
-  currentSteps: 0
---- !u!114 &5619951076764304039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470027857138062379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706d87db85444a04081f7d271dce956b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acd: 5
-  range: 10
-  chargeEffect: {fileID: 4909902925158851423, guid: 66417a4e2cfe2ef44a04fd7cc1b5c505,
-    type: 3}
-  stunTime: 1
-  dmg: 250
---- !u!114 &4159386259641255184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470027857138062379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de72c2b4dcd34874fab40f6fce370659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acd: 10
-  range: 5
-  teleportEffect: {fileID: 3838902983540275944, guid: 822a85a45243e5f45adbd7dc67b9be4f,
-    type: 3}
-  attackPos: {fileID: 2786821105962528903}
-  boundaries:
-    serializedVersion: 2
-    m_Bits: 2048
---- !u!114 &3278817959938123405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470027857138062379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc530b3ccafa1464594236799fff3f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  maxStep: 20000
-  enemy: {fileID: 8426608968268918097}
-  distanceToTarget: 0
-  targetHealth: 0
-  movementDirection: {x: 0, y: 0}
-  msi: 0
-  agentHealth: 0
-  posResetRndScale: 14
-  arena: {fileID: 5750737120040176246}
-  teamID: 1
-  attackingDirection: {fileID: 3769623220848328975}
-  ally: {fileID: 2683242361649957384}
-  target: {fileID: 2683242361649957384}
 --- !u!114 &121727000763480506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10390,6 +10313,26 @@ MonoBehaviour:
   cd: 2
   effect: {fileID: 5802651140264993763, guid: fdb6ef943056669448a4d958f58b46e6, type: 3}
   healAmount: 100
+--- !u!114 &7890893469628931418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470027857138062379}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99734035a267f1a43bf6ddceeccb1c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  enemy: {fileID: 8426608968268918097}
+  arena: {fileID: 5750737120040176246}
+  teamID: 1
+  attackingDirection: {fileID: 3769623220848328975}
+  ally: {fileID: 8426608968268918097}
+  target: {fileID: 3312709725335994324}
 --- !u!1 &2578549757305270943
 GameObject:
   m_ObjectHideFlags: 0
@@ -15978,11 +15921,10 @@ GameObject:
   - component: {fileID: 7647032909089192345}
   - component: {fileID: 4876521123883199399}
   - component: {fileID: 506776718684530868}
-  - component: {fileID: 4447414870227522113}
   - component: {fileID: 1191892508859043265}
   - component: {fileID: 9122854583833675744}
-  - component: {fileID: 8441249565252111521}
   - component: {fileID: 3236392970765296760}
+  - component: {fileID: 8399605229644374728}
   m_Layer: 9
   m_Name: Mage blue
   m_TagString: Player
@@ -16267,23 +16209,7 @@ MonoBehaviour:
   crit: 0
   burnEffect: {fileID: 5987478075576669587, guid: b3cf8b2afe9be424a871a64504cd751b,
     type: 3}
---- !u!114 &4447414870227522113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5090226222204044846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a73e773366f5a4c95a99692ac33d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basedmg: 100
-  startDelay: 0.5
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 512
+  playerControlled: 0
 --- !u!114 &1191892508859043265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16323,25 +16249,6 @@ MonoBehaviour:
   lived: 0
   victories: 0
   totalSteps: 0
-  currentSteps: 0
---- !u!114 &8441249565252111521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5090226222204044846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706d87db85444a04081f7d271dce956b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acd: 5
-  range: 10
-  chargeEffect: {fileID: 4909902925158851423, guid: 66417a4e2cfe2ef44a04fd7cc1b5c505,
-    type: 3}
-  stunTime: 1
-  dmg: 250
 --- !u!114 &3236392970765296760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16362,6 +16269,24 @@ MonoBehaviour:
   boundaries:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &8399605229644374728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090226222204044846}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79888406b5ef5d149974f2122ff1f25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  enemy: {fileID: 2683242361649957384}
+  arena: {fileID: 5750737120040176246}
+  teamID: 0
+  attackingDirection: {fileID: 6903368311963537275}
 --- !u!1 &5441249556127521292
 GameObject:
   m_ObjectHideFlags: 0
@@ -16495,11 +16420,10 @@ GameObject:
   - component: {fileID: 4091825097794524349}
   - component: {fileID: 8799785121047088895}
   - component: {fileID: 5753089955707307630}
-  - component: {fileID: 6971342783391790541}
   - component: {fileID: 1480053517455261212}
   - component: {fileID: 405481707752796307}
-  - component: {fileID: 4967330659738065525}
   - component: {fileID: 4486396421723937845}
+  - component: {fileID: 7299156435399532889}
   m_Layer: 9
   m_Name: Mage Red
   m_TagString: Player
@@ -16784,23 +16708,7 @@ MonoBehaviour:
   crit: 0
   burnEffect: {fileID: 5987478075576669587, guid: b3cf8b2afe9be424a871a64504cd751b,
     type: 3}
---- !u!114 &6971342783391790541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650496336941462790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a73e773366f5a4c95a99692ac33d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basedmg: 100
-  startDelay: 0.5
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 512
+  playerControlled: 0
 --- !u!114 &1480053517455261212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16840,25 +16748,6 @@ MonoBehaviour:
   lived: 0
   victories: 0
   totalSteps: 0
-  currentSteps: 0
---- !u!114 &4967330659738065525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650496336941462790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706d87db85444a04081f7d271dce956b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acd: 5
-  range: 10
-  chargeEffect: {fileID: 4909902925158851423, guid: 66417a4e2cfe2ef44a04fd7cc1b5c505,
-    type: 3}
-  stunTime: 1
-  dmg: 250
 --- !u!114 &4486396421723937845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16879,6 +16768,24 @@ MonoBehaviour:
   boundaries:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &7299156435399532889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650496336941462790}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79888406b5ef5d149974f2122ff1f25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  enemy: {fileID: 8426608968268918097}
+  arena: {fileID: 5750737120040176246}
+  teamID: 1
+  attackingDirection: {fileID: 3936275549492910802}
 --- !u!1 &5705886772869724668
 GameObject:
   m_ObjectHideFlags: 0
@@ -21949,8 +21856,8 @@ Transform:
   - {fileID: 2683242361649957384}
   - {fileID: 6920633675299187763}
   - {fileID: 6321976422491938918}
-  - {fileID: 1752192010619808235}
   - {fileID: 3312709725335994324}
+  - {fileID: 1752192010619808235}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22405,18 +22312,15 @@ GameObject:
   - component: {fileID: 7534045589384529573}
   - component: {fileID: 1797605775664767218}
   - component: {fileID: 5931405059906881976}
+  - component: {fileID: 3243424409097423332}
   - component: {fileID: 6145917655698567712}
   - component: {fileID: 5195825565400968928}
   - component: {fileID: 3758527732349545048}
-  - component: {fileID: 1085890848920247765}
-  - component: {fileID: 4120359403850755227}
   - component: {fileID: 1457252988220917560}
-  - component: {fileID: 8936358789451643863}
-  - component: {fileID: 238141118721550915}
-  - component: {fileID: 3243424409097423332}
   - component: {fileID: 5908507259345618323}
   - component: {fileID: 418113520637530192}
   - component: {fileID: 2890787759418495145}
+  - component: {fileID: 2384466665473172105}
   m_Layer: 9
   m_Name: 'Healer blue '
   m_TagString: Player
@@ -22439,7 +22343,7 @@ Transform:
   - {fileID: 8699657400114750094}
   - {fileID: 5939744816907226547}
   m_Father: {fileID: 5750737120040176245}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8699419229749965950
 SpriteRenderer:
@@ -22623,6 +22527,34 @@ MonoBehaviour:
   DecisionPeriod: 10
   RepeatAction: 1
   offsetStep: 0
+--- !u!114 &3243424409097423332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273666213995142582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc530b3ccafa1464594236799fff3f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  maxStep: 20000
+  enemy: {fileID: 2683242361649957384}
+  distanceToTarget: 0
+  targetHealth: 0
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  agentHealth: 0
+  posResetRndScale: 14
+  arena: {fileID: 5750737120040176246}
+  teamID: 0
+  attackingDirection: {fileID: 2578549757305270943}
+  ally: {fileID: 8426608968268918097}
+  target: {fileID: 8426608968268918097}
 --- !u!114 &6145917655698567712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22675,42 +22607,7 @@ MonoBehaviour:
   crit: 0
   burnEffect: {fileID: 5987478075576669587, guid: b3cf8b2afe9be424a871a64504cd751b,
     type: 3}
---- !u!114 &1085890848920247765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273666213995142582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a73e773366f5a4c95a99692ac33d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basedmg: 100
-  startDelay: 0.5
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 512
---- !u!114 &4120359403850755227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273666213995142582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e82ab83fa701c498069fa7b8e974a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 1150724258750520066, guid: 818c5605413b00641b517b1f127b8ce0,
-    type: 3}
-  shotPoint: {fileID: 1570483316537903989}
-  user: {fileID: 3312709725335994324}
-  startcd: 0.5
-  dmg: 50
-  slow: 0.3
+  playerControlled: 0
 --- !u!114 &1457252988220917560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22731,73 +22628,6 @@ MonoBehaviour:
   lived: 0
   victories: 0
   totalSteps: 0
-  currentSteps: 0
---- !u!114 &8936358789451643863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273666213995142582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706d87db85444a04081f7d271dce956b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acd: 5
-  range: 10
-  chargeEffect: {fileID: 4909902925158851423, guid: 66417a4e2cfe2ef44a04fd7cc1b5c505,
-    type: 3}
-  stunTime: 1
-  dmg: 250
---- !u!114 &238141118721550915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273666213995142582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de72c2b4dcd34874fab40f6fce370659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acd: 10
-  range: 5
-  teleportEffect: {fileID: 3838902983540275944, guid: 822a85a45243e5f45adbd7dc67b9be4f,
-    type: 3}
-  attackPos: {fileID: 1570483316537903989}
-  boundaries:
-    serializedVersion: 2
-    m_Bits: 2048
---- !u!114 &3243424409097423332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273666213995142582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc530b3ccafa1464594236799fff3f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  maxStep: 20000
-  enemy: {fileID: 2683242361649957384}
-  distanceToTarget: 0
-  targetHealth: 0
-  movementDirection: {x: 0, y: 0}
-  msi: 0
-  agentHealth: 0
-  posResetRndScale: 14
-  arena: {fileID: 5750737120040176246}
-  teamID: 0
-  attackingDirection: {fileID: 2578549757305270943}
-  ally: {fileID: 8426608968268918097}
-  target: {fileID: 8426608968268918097}
 --- !u!114 &5908507259345618323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22849,6 +22679,26 @@ MonoBehaviour:
   cd: 2
   effect: {fileID: 5802651140264993763, guid: fdb6ef943056669448a4d958f58b46e6, type: 3}
   healAmount: 100
+--- !u!114 &2384466665473172105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273666213995142582}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99734035a267f1a43bf6ddceeccb1c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  enemy: {fileID: 2683242361649957384}
+  arena: {fileID: 5750737120040176246}
+  teamID: 0
+  attackingDirection: {fileID: 2578549757305270943}
+  ally: {fileID: 8426608968268918097}
+  target: {fileID: 1752192010619808235}
 --- !u!1 &7479001194162588964
 GameObject:
   m_ObjectHideFlags: 0
@@ -22870,9 +22720,9 @@ GameObject:
   - component: {fileID: 6616747169684417848}
   - component: {fileID: 676863759980299751}
   - component: {fileID: 2784933071950531998}
-  - component: {fileID: 49865812999064701}
   - component: {fileID: 4611694316955568047}
   - component: {fileID: 3435779652995726280}
+  - component: {fileID: 2813852726825342016}
   m_Layer: 9
   m_Name: Warrior red
   m_TagString: Player
@@ -23157,6 +23007,7 @@ MonoBehaviour:
   crit: 0
   burnEffect: {fileID: 5987478075576669587, guid: b3cf8b2afe9be424a871a64504cd751b,
     type: 3}
+  playerControlled: 0
 --- !u!114 &2784933071950531998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23174,25 +23025,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &49865812999064701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479001194162588964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e82ab83fa701c498069fa7b8e974a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 1150724258750520066, guid: 818c5605413b00641b517b1f127b8ce0,
-    type: 3}
-  shotPoint: {fileID: 3222191121218959077}
-  user: {fileID: 2683242361649957384}
-  startcd: 1
-  dmg: 200
-  slow: 0.3
 --- !u!114 &4611694316955568047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23213,7 +23045,6 @@ MonoBehaviour:
   lived: 0
   victories: 0
   totalSteps: 0
-  currentSteps: 0
 --- !u!114 &3435779652995726280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23232,6 +23063,24 @@ MonoBehaviour:
     type: 3}
   stunTime: 2
   dmg: 50
+--- !u!114 &2813852726825342016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479001194162588964}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e67aeccda444e47b729db1fded2d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  enemy: {fileID: 8426608968268918097}
+  arena: {fileID: 5750737120040176246}
+  teamID: 1
+  attackingDirection: {fileID: 5705886772869724668}
 --- !u!1 &7997894126687469588
 GameObject:
   m_ObjectHideFlags: 0
@@ -23253,9 +23102,9 @@ GameObject:
   - component: {fileID: 8961761790781449768}
   - component: {fileID: 7275591453817282293}
   - component: {fileID: 3451218278719946831}
-  - component: {fileID: 2095123388535814398}
   - component: {fileID: 1201478489994664560}
   - component: {fileID: 3319108278814082963}
+  - component: {fileID: 2439300009104336390}
   m_Layer: 9
   m_Name: Warrior blue
   m_TagString: Player
@@ -23540,6 +23389,7 @@ MonoBehaviour:
   crit: 0
   burnEffect: {fileID: 5987478075576669587, guid: b3cf8b2afe9be424a871a64504cd751b,
     type: 3}
+  playerControlled: 0
 --- !u!114 &3451218278719946831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23557,25 +23407,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &2095123388535814398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997894126687469588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e82ab83fa701c498069fa7b8e974a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 1150724258750520066, guid: 818c5605413b00641b517b1f127b8ce0,
-    type: 3}
-  shotPoint: {fileID: 6362136731096327203}
-  user: {fileID: 8426608968268918097}
-  startcd: 1
-  dmg: 200
-  slow: 0.3
 --- !u!114 &1201478489994664560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23596,7 +23427,6 @@ MonoBehaviour:
   lived: 0
   victories: 0
   totalSteps: 0
-  currentSteps: 0
 --- !u!114 &3319108278814082963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23615,6 +23445,24 @@ MonoBehaviour:
     type: 3}
   stunTime: 2
   dmg: 50
+--- !u!114 &2439300009104336390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997894126687469588}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e67aeccda444e47b729db1fded2d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDirection: {x: 0, y: 0}
+  msi: 0
+  enemy: {fileID: 2683242361649957384}
+  arena: {fileID: 5750737120040176246}
+  teamID: 0
+  attackingDirection: {fileID: 2129981531852020528}
 --- !u!1 &8021910078289423065
 GameObject:
   m_ObjectHideFlags: 0

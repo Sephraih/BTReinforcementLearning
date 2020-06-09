@@ -595,7 +595,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
@@ -614,24 +613,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a195ed11d3e2cab4fa67d04267720cae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  ichi: {fileID: 0}
-  dummy: {fileID: 519420032}
-  offset: {x: 0, y: 0, z: -1}
-  enemylist: []
-  ShakeAnimation: {fileID: 519420033}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -733,7 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12dcfd6f99ceca49945d3fc3e758fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
   hks: 0
 --- !u!1001 &565974716
 PrefabInstance:
@@ -1124,7 +1104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12dcfd6f99ceca49945d3fc3e758fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0
   hks: 0
 --- !u!4 &1164777718 stripped
 Transform:
@@ -1843,9 +1822,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 460466772953835364, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+    - target: {fileID: 3243424409097423332, guid: 1822bc7e6db51c94abff7f43b9695f4d,
         type: 3}
-      propertyPath: m_BehaviorType
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671902386852027141, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508154486716384870, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2384466665473172105, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439300009104336390, guid: 1822bc7e6db51c94abff7f43b9695f4d,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

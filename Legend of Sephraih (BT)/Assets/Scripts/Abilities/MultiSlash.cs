@@ -95,7 +95,7 @@ public class MultiSlash : MonoBehaviour
         Color sc = new Color(0.2f, 0, 0.7f, 1);
         Slash(30, sc);
         Slash(-30, sc);
-        Camera.main.GetComponent<camerafollow>().CamShake();
+        //Camera.main.GetComponent<CameraFollow>().CamShake();
         Camera.main.GetComponent<NeutralCam>().CamShake();
     }
 

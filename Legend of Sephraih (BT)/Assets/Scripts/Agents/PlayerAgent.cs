@@ -73,7 +73,7 @@ public class PlayerAgent : BasicAgent
 
     }
 
-
+    /* //used for debugging, controlled through player script otherwise
     public override float[] Heuristic()
     {
         var action = new float[5];
@@ -84,5 +84,5 @@ public class PlayerAgent : BasicAgent
         action[4] = Input.GetButtonUp("e") == true ? 1f : 0f;
 
         return action;
-    }
+    }*/
 }

@@ -63,8 +63,8 @@ public class MageAgent : BasicAgent
 
     }
 
-
-    // heuristic function used to let the player controll the agent through the agent script
+    /*
+    // heuristic function used to let the player controll the agent through the agent script - used for debugging, controlled through player script otherwise
     public override float[] Heuristic()
     {
         var action = new float[4];
@@ -74,5 +74,5 @@ public class MageAgent : BasicAgent
         action[3] = Input.GetButtonDown("e") == true ? 1f : 0f;
 
         return action;
-    }
+    }*/
 }

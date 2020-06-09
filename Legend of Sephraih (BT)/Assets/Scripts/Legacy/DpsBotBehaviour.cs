@@ -21,11 +21,11 @@ public class DpsBotBehaviour : MonoBehaviour
     // called each frame
     void Update()
     {
-        if (transform != Camera.main.GetComponent<camerafollow>().target) // bot logic applies if not active character
+        if (transform != Camera.main.GetComponent<CameraFollow>().target) // bot logic applies if not active character
         {
 
-            target = Camera.main.GetComponent<camerafollow>().ClosestEnemy(transform); // get the closest enemy
-            if (target && target != Camera.main.GetComponent<camerafollow>().dummy)
+            target = Camera.main.GetComponent<CameraFollow>().ClosestEnemy(transform); // get the closest enemy
+            if (target && target != Camera.main.GetComponent<CameraFollow>().dummy)
             {
                 Move();
                 Aim();

@@ -34,7 +34,7 @@ public class DummyController : MonoBehaviour
     void Move()
     {
 
-        player = Camera.main.GetComponent<camerafollow>().ClosestPlayer(transform); // the player this bot interacts with is the one closest to it
+        player = Camera.main.GetComponent<CameraFollow>().ClosestPlayer(transform); // the player this bot interacts with is the one closest to it
 
         movementDirection = new Vector2(-1 * (rb.position.x - player.transform.position.x), -1 * (rb.position.y - player.transform.position.y)); // move towards the player
         movementDirection.Normalize(); // normalized so distance doesnt influence movement speed
