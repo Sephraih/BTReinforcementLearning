@@ -8,33 +8,27 @@ public class ArenaBehaviour : MonoBehaviour
 {
     public List<Transform> characterList; // list of currently active enemies
     public List<Transform> treeList;
-    public int deathcount =0;
-    private float distance =10000; //big value, characters further away cannot be targeted
+    public int deathcount = 0;
 
     private void Start()
     {
-       // UpdateTrees(); //randomize at start
+        // UpdateTrees(); //randomize at start
     }
 
     //return a calling agent's closest enemy
-    public Transform ClosestEnemy(Transform self, Transform ce)
+    public Transform ClosestEnemy(Transform self)
     {
+
+        float distance = 10000;
         int teamID = self.GetComponent<StatusController>().teamID;
-
-        if (characterList.Count >= 2) //at least self and another character
+        Transform ce = self; //return itself if there is no other enemy - this means that a default enemy has to be asigned in the inspector no longer. Also the size of the characterList doesn't have to be checked anymore.
+        foreach (Transform e in characterList)
         {
-
-            Transform enemy = characterList[0];
-            foreach (Transform e in characterList)
+            if (Vector2.Distance(self.position, e.position) < distance && e.GetComponent<StatusController>().teamID != teamID) //search for the enemy with the shortest distance to calling agent (closer than max distance or distance to previous enemy, not on the same team)
             {
-                if (Vector2.Distance(self.position, e.position) < distance && e.GetComponent<StatusController>().teamID != teamID) //search for the enemy with the shortest distance to calling agent
-                {
-                    distance = Vector2.Distance(self.position, e.position);
-                    enemy = e;
-                }
+                distance = Vector2.Distance(self.position, e.position);
+                ce = e;
             }
-            if (enemy.GetComponent<StatusController>().teamID != teamID) { return enemy; }
-
         }
         return ce;
     }
@@ -42,22 +36,20 @@ public class ArenaBehaviour : MonoBehaviour
     //return a calling agent's closest ally
     public Transform ClosestAlly(Transform self, Transform ca)
     {
+        float distance = 10000;
         int teamID = self.GetComponent<StatusController>().teamID;
 
         if (characterList.Count >= 2) //at least self and and another character
         {
 
-            Transform ally = characterList[0];
             foreach (Transform a in characterList)
             {
                 if (Vector2.Distance(self.position, a.position) < distance && a.GetComponent<StatusController>().teamID == teamID && self != a) //search for the ally with the shortest distance (not self)
                 {
                     distance = Vector2.Distance(self.position, a.position);
-                    ally = a;
+                    ca = a;
                 }
             }
-            if (ally.GetComponent<StatusController>().teamID == teamID && self !=ally) { return ally; }
-
         }
         return ca;
     }

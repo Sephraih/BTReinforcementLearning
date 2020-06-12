@@ -29,7 +29,20 @@ public class BasicAgent : Agent
         agentHealth = GetComponent<HealthController>().maxHealth;
         arena.GetComponent<ArenaBehaviour>().Register(transform);
         GetComponent<StatusController>().teamID = GetComponent<BehaviorParameters>().m_TeamID;
+        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena
     }
+
+    //observation Vector
+    public override void CollectObservations()
+    {
+        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena
+        //observe arena-relative position of the enemy and this agent
+        AddVectorObs(enemy.localPosition.x);
+        AddVectorObs(enemy.localPosition.y);
+        AddVectorObs(transform.localPosition.x);
+        AddVectorObs(transform.localPosition.y);
+    }
+
 
     public override void AgentReset()
     {
@@ -38,9 +51,9 @@ public class BasicAgent : Agent
         GetComponent<HealthController>().Max(); //reset to max health
         GetComponent<CharacterStats>().Reset(); //reset statistical values
         GetComponent<CharacterStats>().TotalSteps(maxStep); //Total steps over all reset periods
-       // arena.GetComponent<ArenaBehaviour>().deathcount++; //the death count is used to randomize trees
-       // int a = arena.GetComponent<ArenaBehaviour>().deathcount;
-       // if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees(); //trees randomized every 5th death
+                                                            // arena.GetComponent<ArenaBehaviour>().deathcount++; //the death count is used to randomize trees
+                                                            // int a = arena.GetComponent<ArenaBehaviour>().deathcount;
+                                                            // if (a % 5 == 0) arena.GetComponent<ArenaBehaviour>().UpdateTrees(); //trees randomized every 5th death
     }
 
     //called by an enemy's HealthController when it dies through damage caused by agent this script is attached to

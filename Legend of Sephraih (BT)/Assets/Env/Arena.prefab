@@ -10187,8 +10187,8 @@ MonoBehaviour:
   arena: {fileID: 5750737120040176246}
   teamID: 1
   attackingDirection: {fileID: 3769623220848328975}
-  ally: {fileID: 2683242361649957384}
-  target: {fileID: 2683242361649957384}
+  ally: {fileID: 0}
+  target: {fileID: 1752192010619808235}
 --- !u!114 &2076182441443173200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15931,7 +15931,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6920633675299187763
 Transform:
   m_ObjectHideFlags: 0
@@ -16129,7 +16129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DecisionPeriod: 10
-  RepeatAction: 1
+  RepeatAction: 0
   offsetStep: 0
 --- !u!114 &3203629724011006435
 MonoBehaviour:
@@ -16430,7 +16430,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6321976422491938918
 Transform:
   m_ObjectHideFlags: 0
@@ -16628,7 +16628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DecisionPeriod: 10
-  RepeatAction: 1
+  RepeatAction: 0
   offsetStep: 0
 --- !u!114 &4606923665711555020
 MonoBehaviour:
@@ -16646,7 +16646,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 20000
-  enemy: {fileID: 8426608968268918097}
+  enemy: {fileID: 6920633675299187763}
   distanceToTarget: 0
   targetHealth: 0
   movementDirection: {x: 0, y: 0}
@@ -22553,8 +22553,8 @@ MonoBehaviour:
   arena: {fileID: 5750737120040176246}
   teamID: 0
   attackingDirection: {fileID: 2578549757305270943}
-  ally: {fileID: 8426608968268918097}
-  target: {fileID: 8426608968268918097}
+  ally: {fileID: 0}
+  target: {fileID: 3312709725335994324}
 --- !u!114 &6145917655698567712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22905,7 +22905,7 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 4
     numStackedVectorObservations: 5
-    vectorActionSize: 04000000
+    vectorActionSize: 06000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
   m_Model: {fileID: 5022602860645237092, guid: 60126c743704e484893b1e0cebe51f71, type: 3}
@@ -22927,7 +22927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DecisionPeriod: 10
-  RepeatAction: 1
+  RepeatAction: 0
   offsetStep: 0
 --- !u!114 &6232331634992417615
 MonoBehaviour:
@@ -22945,7 +22945,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 20000
-  enemy: {fileID: 6920633675299187763}
+  enemy: {fileID: 8426608968268918097}
   distanceToTarget: 0
   targetHealth: 0
   movementDirection: {x: 0, y: 0}
@@ -23309,7 +23309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DecisionPeriod: 10
-  RepeatAction: 1
+  RepeatAction: 0
   offsetStep: 0
 --- !u!114 &6671902386852027141
 MonoBehaviour:
@@ -23327,7 +23327,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   maxStep: 20000
-  enemy: {fileID: 6321976422491938918}
+  enemy: {fileID: 2683242361649957384}
   distanceToTarget: 0
   targetHealth: 0
   movementDirection: {x: 0, y: 0}

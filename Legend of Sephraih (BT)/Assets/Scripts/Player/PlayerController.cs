@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         attackingDirection.transform.localPosition = new Vector2(0, -0.5f); // set an attacking direction before the player moves for the first time
-        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform, enemy); //get closest enemy inside arena
+        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena
         arena.GetComponent<ArenaBehaviour>().Register(transform);
         GetComponent<StatusController>().teamID = teamID;
         GetComponent<StatusController>().playerControlled = true;

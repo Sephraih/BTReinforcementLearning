@@ -10,16 +10,9 @@ public class WarriorAgent : BasicAgent
     private bool _e;
 
 
-    //observation Vector
-    public override void CollectObservations()
-    {
-        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform, enemy); //get closest enemy inside arena
-        //observe arena-relative position of the enemy and this agent
-        AddVectorObs(enemy.localPosition.x);
-        AddVectorObs(enemy.localPosition.y);
-        AddVectorObs(transform.localPosition.x);
-        AddVectorObs(transform.localPosition.y);
-    }
+    //observation vector taken from parent, the basic agent class
+
+
 
     //action Vector
     public override void AgentAction(float[] vectorAction)
@@ -57,7 +50,6 @@ public class WarriorAgent : BasicAgent
         }
 
         if (distanceToTarget > 10.0f) SetReward(-0.005f); //far from enemy (being lame)
-
     }
 
     /*

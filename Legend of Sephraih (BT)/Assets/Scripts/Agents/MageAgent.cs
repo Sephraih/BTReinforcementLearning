@@ -11,16 +11,7 @@ public class MageAgent : BasicAgent
     private bool _e;
 
 
-    //observation Vector
-    public override void CollectObservations()
-    {
-        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform,enemy); //get closest enemy inside arena
-        //observe arena-relative position of the enemy and this agent
-        AddVectorObs(enemy.localPosition.x);
-        AddVectorObs(enemy.localPosition.y);
-        AddVectorObs(transform.localPosition.x);
-        AddVectorObs(transform.localPosition.y);
-    }
+    //observation vector taken from parent, the basic agent class
 
     //action Vector
     public override void AgentAction(float[] vectorAction) //action vector size defined in the unity inspector

@@ -14,7 +14,7 @@ public class PlayerAgent : BasicAgent
     //observation Vector
     public override void CollectObservations()
     {
-        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform, enemy); //get closest enemy inside arena
+        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena
         //AddVectorObs(distanceToTarget);
         AddVectorObs(enemy.localPosition.x);
         AddVectorObs(enemy.localPosition.y);

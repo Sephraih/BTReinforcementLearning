@@ -25,3 +25,7 @@ Various agents can be dis- and enabled by toggling the checkbox at the top of th
 It is recommended to toggle them via the arena prefab found in the env folder.
 
 The short movie can alternatively be found with english subtitles on: https://www.youtube.com/watch?v=3PAeLEF0PYQ
+
+To Build run trainings, ML-Agents version 0.14.0 and TensorFlow version 2.0.1 are required.
+Unity version 2019.3.0b3 was used for both game prototype of the project 2 module and this thesis project.
+Pythong version 3.7 has to be installed on the system.

@@ -18,8 +18,9 @@ public class HealerAgent : BasicAgent
     //observation Vector
     public override void CollectObservations()
     {
-        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform, enemy); //get closest enemy inside arena
+        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena if available
         ally = arena.GetComponent<ArenaBehaviour>().ClosestAlly(transform, ally); //get closest ally inside arena
+        
         //observe arena-relative position of the enemy and this agent
         AddVectorObs(target.localPosition.x);
         AddVectorObs(target.localPosition.y);

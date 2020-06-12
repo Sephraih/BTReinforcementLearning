@@ -20,7 +20,7 @@ public class PlayerWarriorController : PlayerController
     // using the skills assigned to the keys depending on input
     public override void Attack()
     {
-        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform, enemy); //get closest enemy inside arena
+        enemy = arena.GetComponent<ArenaBehaviour>().ClosestEnemy(transform); //get closest enemy inside arena
         if (_a)
         {
             GetComponent<MultiSlash>().Attack();
